@@ -1,135 +1,231 @@
+
 <!DOCTYPE html>
 <html lang="fr">
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <meta name="theme-color" content="#087f5b">
-  <title>Carnet Pro — Gestion des crédits</title>
+  <meta name="theme-color" content="#f5f7fb">
+  <title>Carnet Pro - Gestion des crédits</title>
   <link rel="stylesheet" href="style.css">
+  <script src="app.js" defer></script>
 </head>
+
 <body>
-  <div class="app-shell">
-    <header class="topbar">
-      <div class="brand">
-        <div class="brand-mark">↗</div>
-        <div>
-          <strong>Carnet Pro</strong>
-          <small>Votre commerce, bien organisé</small>
-        </div>
+
+  <header class="topbar">
+    <div class="brand">
+      <div class="brand-icon">C</div>
+      <div>
+        <h1>Carnet Pro</h1>
+        <p>Gestion des crédits clients</p>
       </div>
-      <button class="icon-button" aria-label="Notifications">♧</button>
-    </header>
+    </div>
+    <span class="online-status">● Mon espace</span>
+  </header>
 
-    <main>
-      <section class="welcome">
-        <div>
-          <p class="eyebrow">TABLEAU DE BORD</p>
-          <h1>Bonjour 👋</h1>
-          <p class="muted">Voici la situation de votre commerce.</p>
+  <main class="container">
+
+    <section class="welcome">
+      <div>
+        <p class="eyebrow">TABLEAU DE BORD</p>
+        <h2>Bonjour !</h2>
+        <p class="subtitle">Voici la situation de vos crédits.</p>
+      </div>
+      <button id="addCustomerBtn" class="primary-btn">
+        + Nouveau client
+      </button>
+    </section>
+
+    <section class="stats-grid">
+
+      <article class="stat-card blue-card">
+        <div class="stat-top">
+          <span>Total des crédits</span>
+          <span class="stat-icon">↗</span>
         </div>
-        <div class="shop-pill"><span class="online-dot"></span> Ma boutique</div>
-      </section>
+        <strong id="totalCredits">0 FCFA</strong>
+        <small>Montant total accordé</small>
+      </article>
 
-      <section class="summary-grid" aria-label="Résumé financier">
-        <article class="summary-card green-card">
-          <div class="card-icon">↗</div>
-          <p>Crédits accordés</p>
-          <strong id="totalCredits">0</strong>
-          <small>FCFA au total</small>
-        </article>
-        <article class="summary-card">
-          <div class="card-icon pale">✓</div>
-          <p>Remboursements</p>
-          <strong id="totalPayments">0</strong>
-          <small>FCFA reçus</small>
-        </article>
-      </section>
-
-      <section class="balance-card">
-        <div>
-          <p class="eyebrow">TOTAL RESTANT À RÉCUPÉRER</p>
-          <strong id="remainingBalance">0 FCFA</strong>
-          <small>Montant total des crédits non soldés</small>
+      <article class="stat-card green-card">
+        <div class="stat-top">
+          <span>Total des paiements</span>
+          <span class="stat-icon">✓</span>
         </div>
-        <div class="balance-icon">₣</div>
-      </section>
+        <strong id="totalPayments">0 FCFA</strong>
+        <small>Montant déjà remboursé</small>
+      </article>
 
-      <section class="quick-actions">
-        <button class="primary-button" id="addCreditBtn"><span>＋</span> Nouveau crédit</button>
-        <button class="secondary-button" id="addCustomerBtn"><span>＋</span> Nouveau client</button>
-      </section>
-
-      <section class="section-heading">
-        <div>
-          <h2>Derniers clients</h2>
-          <p class="muted">Suivez les montants à rembourser</p>
+      <article class="stat-card orange-card">
+        <div class="stat-top">
+          <span>Reste à encaisser</span>
+          <span class="stat-icon">◷</span>
         </div>
-        <button class="text-button" id="seeAllBtn">Voir tout</button>
-      </section>
+        <strong id="remainingBalance">0 FCFA</strong>
+        <small>Crédits non remboursés</small>
+      </article>
 
-      <label class="search-box">
+    </section>
+
+    <section class="content-card">
+
+      <div class="section-heading">
+        <div>
+          <h2>Mes clients</h2>
+          <p>Suivez les crédits de vos clients.</p>
+        </div>
+        <button id="seeAllBtn" class="text-btn">Voir tout</button>
+      </div>
+
+      <div class="search-box">
         <span>⌕</span>
-        <input id="searchInput" type="search" placeholder="Rechercher un client...">
-      </label>
-      <section id="customerList" class="customer-list" aria-live="polite"></section>
-    </main>
+        <input
+          type="search"
+          id="searchInput"
+          placeholder="Rechercher un client..."
+        >
+      </div>
 
-    <nav class="bottom-nav" aria-label="Navigation principale">
-      <button class="nav-item active" data-view="home"><span>⌂</span>Accueil</button>
-      <button class="nav-item" data-view="customers"><span>♙</span>Clients</button>
-      <button class="nav-item" data-view="history"><span>◷</span>Historique</button>
-      <button class="nav-item" data-view="more"><span>☰</span>Plus</button>
+      <div class="customer-heading">
+        <span>CLIENT</span>
+        <span>RESTE À PAYER</span>
+      </div>
+
+      <div id="customerList">
+        <!-- Les clients seront affichés ici par app.js -->
+      </div>
+
+    </section>
+
+    <section class="quick-actions">
+      <button id="addCreditBtn" class="secondary-btn">
+        + Enregistrer un crédit
+      </button>
+    </section>
+
+    <nav class="bottom-nav">
+      <button class="nav-item active" data-view="dashboard">
+        <span>⌂</span>
+        Accueil
+      </button>
+      <button class="nav-item" data-view="customers">
+        <span>♙</span>
+        Clients
+      </button>
+      <button class="nav-item" data-view="credits">
+        <span>▤</span>
+        Crédits
+      </button>
     </nav>
-  </div>
 
-  <dialog id="customerDialog" class="modal">
-    <form id="customerForm" method="dialog">
-      <div class="modal-head">
-        <div><p class="eyebrow">CARNET PRO</p><h2>Ajouter un client</h2></div>
-        <button class="close-button" value="cancel" formnovalidate aria-label="Fermer">×</button>
+  </main>
+
+  <dialog id="customerDialog" class="app-dialog">
+    <form id="customerForm">
+      <div class="dialog-heading">
+        <h2>Nouveau client</h2>
+        <p>Ajoutez les informations du client.</p>
       </div>
-      <label>Nom du client<input name="name" required maxlength="80" placeholder="Ex. Amadou Ndiaye"></label>
-      <label>Téléphone<input name="phone" inputmode="tel" placeholder="Ex. 77 000 00 00"></label>
-      <div class="modal-actions">
-        <button class="secondary-button" value="cancel" formnovalidate>Annuler</button>
-        <button class="primary-button" type="submit">Enregistrer</button>
+
+      <label for="customerName">Nom complet</label>
+      <input
+        type="text"
+        id="customerName"
+        name="name"
+        placeholder="Ex : Mamadou Diallo"
+        required
+      >
+
+      <label for="customerPhone">Téléphone</label>
+      <input
+        type="tel"
+        id="customerPhone"
+        name="phone"
+        placeholder="Ex : 770000000"
+      >
+
+      <div class="dialog-actions">
+        <button type="button" class="cancel-btn"
+          onclick="document.getElementById('customerDialog').close()">
+          Annuler
+        </button>
+        <button type="submit" class="primary-btn">Enregistrer</button>
       </div>
     </form>
   </dialog>
 
-  <dialog id="creditDialog" class="modal">
-    <form id="creditForm" method="dialog">
-      <div class="modal-head">
-        <div><p class="eyebrow">NOUVELLE OPÉRATION</p><h2>Enregistrer un crédit</h2></div>
-        <button class="close-button" value="cancel" formnovalidate aria-label="Fermer">×</button>
+  <dialog id="creditDialog" class="app-dialog">
+    <form id="creditForm">
+      <div class="dialog-heading">
+        <h2>Enregistrer un crédit</h2>
+        <p>Ajoutez un nouveau crédit client.</p>
       </div>
-      <label>Client<select name="customerId" id="creditCustomer" required></select></label>
-      <label>Description<input name="description" required maxlength="120" placeholder="Ex. Achat de marchandises"></label>
-      <label>Montant (FCFA)<input name="amount" type="number" min="1" step="1" required placeholder="Ex. 15000"></label>
-      <div class="modal-actions">
-        <button class="secondary-button" value="cancel" formnovalidate>Annuler</button>
-        <button class="primary-button" type="submit">Enregistrer</button>
+
+      <label for="creditCustomer">Client</label>
+      <select id="creditCustomer" name="customerId" required>
+      </select>
+
+      <label for="creditDescription">Description</label>
+      <input
+        type="text"
+        id="creditDescription"
+        name="description"
+        placeholder="Ex : Achat de marchandises"
+      >
+
+      <label for="creditAmount">Montant (FCFA)</label>
+      <input
+        type="number"
+        id="creditAmount"
+        name="amount"
+        min="1"
+        placeholder="Ex : 15000"
+        required
+      >
+
+      <div class="dialog-actions">
+        <button type="button" class="cancel-btn"
+          onclick="document.getElementById('creditDialog').close()">
+          Annuler
+        </button>
+        <button type="submit" class="primary-btn">Enregistrer</button>
       </div>
     </form>
   </dialog>
 
-  <dialog id="paymentDialog" class="modal">
-    <form id="paymentForm" method="dialog">
-      <div class="modal-head">
-        <div><p class="eyebrow">REMBOURSEMENT</p><h2 id="paymentTitle">Ajouter un paiement</h2></div>
-        <button class="close-button" value="cancel" formnovalidate aria-label="Fermer">×</button>
+  <dialog id="paymentDialog" class="app-dialog">
+    <form id="paymentForm">
+      <div class="dialog-heading">
+        <h2 id="paymentTitle">Enregistrer un paiement</h2>
+        <p id="paymentHelp">Saisissez le montant reçu.</p>
       </div>
-      <input type="hidden" name="customerId">
-      <label>Montant reçu (FCFA)<input name="amount" type="number" min="1" step="1" required placeholder="Ex. 5000"></label>
-      <p class="form-note" id="paymentHelp"></p>
-      <div class="modal-actions">
-        <button class="secondary-button" value="cancel" formnovalidate>Annuler</button>
-        <button class="primary-button" type="submit">Valider le paiement</button>
+
+      <label for="paymentCustomer">Client</label>
+      <select id="paymentCustomer" name="customerId" required>
+      </select>
+
+      <label for="paymentAmount">Montant reçu (FCFA)</label>
+      <input
+        type="number"
+        id="paymentAmount"
+        name="amount"
+        min="1"
+        placeholder="Ex : 5000"
+        required
+      >
+
+      <div class="dialog-actions">
+        <button type="button" class="cancel-btn"
+          onclick="document.getElementById('paymentDialog').close()">
+          Annuler
+        </button>
+        <button type="submit" class="primary-btn">Valider</button>
       </div>
     </form>
   </dialog>
 
-  <div id="toast" class="toast" role="status"></div>
-  <script src="app.js"></script>
+  <div id="toast" class="toast"></div>
+
 </body>
-        </html>
+          </html>
+          
