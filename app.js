@@ -94,6 +94,7 @@ list.addEventListener("click",e=>{
   const pay=e.target.closest("[data-pay]");
   const remind=e.target.closest("[data-remind]");
   const row=e.target.closest(".customer-row");
+
   if(pay){
     const c=customers.find(x=>x.id===Number(pay.dataset.pay));
     const form=document.getElementById("paymentForm");
@@ -102,15 +103,26 @@ list.addEventListener("click",e=>{
     document.getElementById("paymentHelp").textContent="Solde restant : "+money(c.credit-c.paid)+" FCFA";
     document.getElementById("paymentTitle").textContent="Paiement de "+c.name;
     paymentDialog.showModal();
+    return;
   }
+
   if(remind){
     const c=customers.find(x=>x.id===Number(remind.dataset.remind));
     const balance=c.credit-c.paid;
-    if(!c.phone){notify("Ajoutez le numéro du client pour WhatsApp.");return;}
+
+    if(!c.phone){
+      notify("Ajoutez le numéro du client pour WhatsApp.");
+      return;
+    }
+
     const phone=c.phone.replace(/\D/g,"");
     const message=`Bonjour ${c.name}, petit rappel concernant votre solde de ${money(balance)} FCFA. Merci et bonne journée.`;
+
     window.open(`https://wa.me/${phone}?text=${encodeURIComponent(message)}`,"_blank");
-      if(!pay && !remind && row){
+    return;
+  }
+
+  if(row){
     const c=customers.find(x=>x.id===Number(row.dataset.customerId));
 
     if(!c)return;
@@ -122,7 +134,6 @@ list.addEventListener("click",e=>{
     document.getElementById("detailBalance").textContent=money(c.credit-c.paid)+" FCFA";
 
     customerDetailDialog.showModal();
-      }
   }
 });
 
