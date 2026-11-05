@@ -13,6 +13,7 @@ const list = document.getElementById("customerList");
 const customerDialog = document.getElementById("customerDialog");
 const creditDialog = document.getElementById("creditDialog");
 const paymentDialog = document.getElementById("paymentDialog");
+const customerDetailDialog = document.getElementById("customerDetailDialog");
 const toast = document.getElementById("toast");
 
 function notify(message){
