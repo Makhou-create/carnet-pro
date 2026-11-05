@@ -540,6 +540,48 @@ button {
     font-size: 12px;
   }
 
+/* NOUVELLES COULEURS VIVES DU TABLEAU DE BORD */
+
+.stat-card {
+  border: none;
+  color: white;
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.10);
+  transition: transform 0.2s ease;
+}
+
+.stat-card:hover {
+  transform: translateY(-3px);
+}
+
+.blue-card {
+  background: linear-gradient(135deg, #2563eb, #1e40af);
+}
+
+.green-card {
+  background: linear-gradient(135deg, #10b981, #047857);
+}
+
+.orange-card {
+  background: linear-gradient(135deg, #f59e0b, #ea580c);
+}
+
+.stat-card .stat-top {
+  color: rgba(255,255,255,0.9);
+}
+
+.stat-card strong {
+  color: white;
+}
+
+.stat-card small {
+  color: rgba(255,255,255,0.85);
+}
+
+.stat-card .stat-icon {
+  background: rgba(255,255,255,0.20);
+  color: white;
+  }
+  
   .mini-button {
     padding: 6px;
     font-size: 10px;
