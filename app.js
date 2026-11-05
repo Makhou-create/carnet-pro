@@ -41,6 +41,7 @@ function renderCustomers(filter=""){
     const initials=c.name.split(" ").map(x=>x[0]).slice(0,2).join("").toUpperCase();
     const row=document.createElement("article");
     row.className="customer-row";
+    row.dataset.customerId = c.id;
     row.innerHTML=`<div class="avatar">${initials}</div><div class="customer-info"><strong>${escapeHTML(c.name)}</strong><small>${escapeHTML(c.phone||"Téléphone non renseigné")}</small></div><div class="customer-right"><strong>${money(balance)} F</strong><span class="status ${balance>0?"due":"paid"}">${balance>0?"À rembourser":"Soldé"}</span><div class="row-actions">${balance>0?'<button class="mini-button" data-pay="'+c.id+'">＋ Paiement</button>':""}<button class="mini-button" data-remind="${c.id}">WhatsApp</button></div></div>`;
     list.appendChild(row);
   });
