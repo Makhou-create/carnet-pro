@@ -1,0 +1,363 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Carnet Pro</title>
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+<style>
+:root{--bleu:#2563eb;--vert:#0f9d6b;--orange:#ea6a0c;--rouge:#dc2626;--fond:#f5f7fb;--texte:#141b34;--gris:#6b7794;--bord:#e3e8f2}
+*{box-sizing:border-box;-webkit-tap-highlight-color:transparent}
+body{margin:0;font-family:system-ui,-apple-system,Roboto,sans-serif;background:var(--fond);color:var(--texte);padding-bottom:120px}
+header{background:rgba(245,247,251,.85);-webkit-backdrop-filter:blur(14px);backdrop-filter:blur(14px);padding:14px 16px;display:flex;align-items:center;gap:12px;position:sticky;top:0;z-index:5}
+.logo{width:44px;height:44px;border-radius:15px;background:linear-gradient(135deg,#3b82f6,#1d4ed8);color:#fff;font-weight:800;font-size:21px;display:grid;place-items:center;box-shadow:0 8px 18px rgba(37,99,235,.35)}
+header h1{margin:0;font-size:19px;letter-spacing:-.3px}header p{margin:1px 0 0;color:var(--gris);font-size:12.5px}
+.espace{margin-left:auto;display:flex;align-items:center;gap:7px;background:#fff;border:1px solid var(--bord);border-radius:20px;padding:8px 13px;color:var(--texte);font:700 13px system-ui,sans-serif;cursor:pointer;box-shadow:0 2px 8px rgba(20,27,52,.06)}
+.espace i{width:8px;height:8px;border-radius:50%;background:var(--vert);box-shadow:0 0 0 4px rgba(15,157,107,.18)}
+svg{fill:none;stroke:currentColor;stroke-width:1.9;stroke-linecap:round;stroke-linejoin:round}
+.hello{margin:6px 0 16px}
+.date{display:inline-block;background:#eaf0ff;color:var(--bleu);font-weight:700;font-size:12px;padding:5px 11px;border-radius:20px}
+.date::first-letter{text-transform:uppercase}
+.hello h2{font-size:32px;letter-spacing:-.8px;margin:10px 0 2px}
+.quick{display:grid;grid-template-columns:repeat(3,1fr);gap:10px;margin-bottom:6px}
+.quick button{background:#fff;border:1px solid var(--bord);border-radius:20px;padding:14px 6px 12px;display:flex;flex-direction:column;align-items:center;gap:8px;font:700 13px system-ui,sans-serif;color:var(--texte);cursor:pointer;box-shadow:0 4px 14px rgba(20,27,52,.05)}
+.quick .ico{width:44px;height:44px;border-radius:15px;display:grid;place-items:center}
+.quick .ico svg{width:22px;height:22px}
+.q1{background:#e8efff;color:var(--bleu)}.q2{background:#fff1e3;color:var(--orange)}.q3{background:#e2f7ee;color:var(--vert)}
+main{padding:16px;max-width:640px;margin:auto}
+.kicker{color:var(--bleu);font-weight:800;letter-spacing:.12em;font-size:13px;margin:8px 0}
+h2{margin:4px 0;font-size:30px}
+.sub{color:var(--gris);margin:0 0 14px}
+.btn{border:0;border-radius:14px;padding:13px 18px;font-weight:700;font-size:16px;background:var(--bleu);color:#fff;cursor:pointer}
+.btn.sec{background:#eaf0ff;color:var(--bleu)}.btn.red{background:#fee2e2;color:var(--rouge)}
+.btn.small{padding:8px 12px;font-size:14px;border-radius:12px}
+.card{border-radius:24px;padding:22px;color:#fff;margin:14px 0}
+.card small{opacity:.9;font-size:15px}.card .n{font-size:38px;font-weight:800;margin:10px 0}
+.c1{background:linear-gradient(135deg,#2563eb,#1e40af)}.c2{background:linear-gradient(135deg,#10b981,#047857)}.c3{background:linear-gradient(135deg,#f59e0b,#ea580c)}
+.box{background:#fff;border:1px solid var(--bord);border-radius:22px;padding:16px;margin:14px 0}
+.box-h{display:flex;justify-content:space-between;align-items:center}
+.box h3{margin:0;font-size:22px}
+.link{color:var(--bleu);font-weight:800;cursor:pointer;font-size:17px}
+input,select,textarea{width:100%;padding:13px;border:1px solid var(--bord);border-radius:14px;font-size:16px;background:#f8f9fd;margin:6px 0 10px;font-family:inherit}
+label{font-size:13px;font-weight:700;color:var(--gris)}
+.cl{border:1px solid var(--bord);border-left:5px solid var(--bleu);border-radius:18px;padding:14px;margin:10px 0;background:#fff}
+.cl.ok{border-left-color:var(--vert)}
+.cl-top{display:flex;gap:12px;align-items:center;cursor:pointer}
+.av{width:48px;height:48px;border-radius:50%;background:linear-gradient(135deg,#2563eb,#1e40af);color:#fff;font-weight:800;display:grid;place-items:center;flex:none}
+.cl.ok .av{background:linear-gradient(135deg,#10b981,#047857)}
+.cl-info{flex:1;min-width:0}.cl-info b{display:block}.cl-info span{color:var(--gris);font-size:14px}
+.rest{text-align:right;font-weight:800;color:var(--orange);font-size:18px}
+.badge{display:inline-block;background:#fef0cc;color:#b45309;border-radius:20px;padding:4px 10px;font-size:12px;font-weight:700;margin-top:4px}
+.acts{display:flex;gap:8px;justify-content:flex-end;margin-top:10px}
+nav{position:fixed;left:14px;right:14px;bottom:calc(14px + env(safe-area-inset-bottom));max-width:612px;margin:auto;background:rgba(255,255,255,.9);-webkit-backdrop-filter:blur(14px);backdrop-filter:blur(14px);border:1px solid rgba(227,232,242,.9);border-radius:26px;box-shadow:0 12px 32px rgba(20,27,52,.16);display:flex;gap:4px;padding:6px;z-index:6}
+nav button{flex:1;border:0;background:none;padding:9px 4px 8px;border-radius:20px;color:var(--gris);font:700 12px system-ui,sans-serif;display:flex;flex-direction:column;align-items:center;gap:3px;cursor:pointer;transition:background .2s,color .2s}
+nav button svg{width:23px;height:23px}
+nav button.on{background:var(--bleu);color:#fff;box-shadow:0 6px 16px rgba(37,99,235,.35)}
+.modal{position:fixed;inset:0;background:rgba(10,15,40,.55);display:none;align-items:flex-end;justify-content:center;z-index:20}
+.modal.show{display:flex}
+.sheet{background:#fff;width:100%;max-width:640px;border-radius:26px 26px 0 0;padding:20px;max-height:90vh;overflow:auto}
+.sheet h3{margin:0 0 10px}
+.row{display:flex;justify-content:space-between;padding:9px 0;border-bottom:1px solid var(--bord);font-size:15px}
+.row small{color:var(--gris);display:block}
+.plus{color:var(--orange);font-weight:700}.moins{color:var(--vert);font-weight:700}
+.vide{color:var(--gris);text-align:center;padding:20px}
+.auth{max-width:420px;margin:60px auto;padding:20px}
+.msg{color:var(--rouge);font-size:14px;min-height:20px}
+.mode{background:#fff7e0;color:#92400e;font-size:12px;text-align:center;padding:6px}
+#toast{position:fixed;top:14px;left:50%;transform:translateX(-50%);background:#141b34;color:#fff;padding:10px 18px;border-radius:20px;font-size:14px;z-index:30;display:none}
+</style>
+</head>
+<body>
+
+<!-- ============ CONFIGURATION SUPABASE ============ -->
+<script>
+// Collez ici vos deux valeurs (Supabase > Project Settings > API)
+// Laissez vide pour tester en MODE LOCAL (données gardées dans le téléphone)
+const SUPABASE_URL = "";
+const SUPABASE_ANON_KEY = "";
+</script>
+
+<div id="app"></div>
+<div class="modal" id="modal" onclick="if(event.target===this)fermer()"><div class="sheet" id="sheet"></div></div>
+<div id="toast"></div>
+
+<script>
+/* ============ OUTILS ============ */
+const $ = s => document.querySelector(s);
+const fmt = n => new Intl.NumberFormat('fr-FR').format(Math.round(n||0)).replace(/[\u202f\u00a0]/g,' ');
+const esc = s => String(s??'').replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
+const initiales = n => n.trim().split(/\s+/).slice(0,2).map(w=>w[0]||'').join('').toUpperCase();
+const datefr = d => new Date(d).toLocaleDateString('fr-FR');
+function toast(t){const e=$('#toast');e.textContent=t;e.style.display='block';setTimeout(()=>e.style.display='none',2500);}
+
+/* ============ COUCHE DONNÉES ============
+   Deux modes avec les mêmes fonctions : Supabase ou localStorage. */
+const MODE_LOCAL = !SUPABASE_URL || !SUPABASE_ANON_KEY;
+let sb = null, user = null;
+if(!MODE_LOCAL) sb = supabase.createClient(SUPABASE_URL, SUPABASE_ANON_KEY);
+
+const DB = {
+  async liste(table){
+    if(MODE_LOCAL) return JSON.parse(localStorage.getItem('cp_'+table)||'[]');
+    const {data,error} = await sb.from(table).select('*').order('created_at',{ascending:false});
+    if(error) throw error; return data;
+  },
+  async ajouter(table,ligne){
+    if(MODE_LOCAL){
+      const l = JSON.parse(localStorage.getItem('cp_'+table)||'[]');
+      const nv = {id:crypto.randomUUID(),created_at:new Date().toISOString(),...ligne};
+      l.unshift(nv); localStorage.setItem('cp_'+table,JSON.stringify(l)); return nv;
+    }
+    const {data,error} = await sb.from(table).insert(ligne).select().single();
+    if(error) throw error; return data;
+  },
+  async supprimer(table,id){
+    if(MODE_LOCAL){
+      const l = JSON.parse(localStorage.getItem('cp_'+table)||'[]').filter(x=>x.id!==id);
+      localStorage.setItem('cp_'+table,JSON.stringify(l)); return;
+    }
+    const {error} = await sb.from(table).delete().eq('id',id);
+    if(error) throw error;
+  }
+};
+
+/* ============ ÉTAT ============ */
+let S = {clients:[],credits:[],paiements:[],page:'accueil',recherche:''};
+
+async function charger(){
+  try{
+    const [c,cr,p] = await Promise.all([DB.liste('clients'),DB.liste('credits'),DB.liste('payments')]);
+    S.clients=c; S.credits=cr; S.paiements=p;
+  }catch(e){ toast('Erreur : '+(e.message||e)); console.error(e); }
+  afficher();
+}
+const totalCredits = id => S.credits.filter(x=>!id||x.client_id===id).reduce((a,x)=>a+Number(x.amount),0);
+const totalPaye = id => S.paiements.filter(x=>!id||x.client_id===id).reduce((a,x)=>a+Number(x.amount),0);
+const reste = id => totalCredits(id)-totalPaye(id);
+
+/* ============ AUTHENTIFICATION ============ */
+async function demarrer(){
+  if(MODE_LOCAL){ await charger(); return; }
+  const {data} = await sb.auth.getSession();
+  user = data.session?.user || null;
+  user ? charger() : ecranConnexion();
+}
+function ecranConnexion(msg=''){
+  $('#app').innerHTML = `<div class="auth">
+    <div class="logo" style="margin-bottom:14px">C</div>
+    <h2>Carnet Pro</h2><p class="sub">Connectez-vous pour accéder à vos crédits.</p>
+    <label>Email</label><input id="em" type="email" autocomplete="email">
+    <label>Mot de passe (6 caractères minimum)</label><input id="pw" type="password" autocomplete="current-password">
+    <div class="msg" id="am">${esc(msg)}</div>
+    <button class="btn" style="width:100%" onclick="connexion()">Se connecter</button>
+    <button class="btn sec" style="width:100%;margin-top:10px" onclick="inscription()">Créer un compte</button></div>`;
+}
+async function connexion(){
+  const {data,error} = await sb.auth.signInWithPassword({email:$('#em').value.trim(),password:$('#pw').value});
+  if(error) return $('#am').textContent = error.message;
+  user = data.user; charger();
+}
+async function inscription(){
+  const {data,error} = await sb.auth.signUp({email:$('#em').value.trim(),password:$('#pw').value});
+  if(error) return $('#am').textContent = error.message;
+  if(data.session){ user=data.user; charger(); }
+  else $('#am').textContent = "Compte créé. Vérifiez votre email puis connectez-vous.";
+}
+async function deconnexion(){
+  if(MODE_LOCAL) return toast('Mode local : pas de compte');
+  await sb.auth.signOut(); user=null; ecranConnexion();
+}
+
+/* ============ AFFICHAGE ============ */
+function ligneClient(c){
+  const r = reste(c.id), ok = r<=0;
+  return `<div class="cl ${ok?'ok':''}">
+    <div class="cl-top" onclick="detailClient('${c.id}')">
+      <div class="av">${esc(initiales(c.name))}</div>
+      <div class="cl-info"><b>${esc(c.name)}</b><span>${esc(c.phone||'')}</span></div>
+      <div class="rest">${fmt(r)} F<br><span class="badge">${ok?'Soldé':'À rembourser'}</span></div>
+    </div>
+    <div class="acts">
+      ${ok?'':`<button class="btn sec small" onclick="formPaiement('${c.id}')">+ Paiement</button>`}
+      <button class="btn sec small" onclick="whatsapp('${c.id}')">WhatsApp</button>
+    </div></div>`;
+}
+/* Icônes (SVG en ligne : pas de fichier externe à charger) */
+const IC = {
+  accueil:'<svg viewBox="0 0 24 24"><path d="M3 11.5 12 4l9 7.5"/><path d="M5 10v9a1 1 0 0 0 1 1h4v-6h4v6h4a1 1 0 0 0 1-1v-9"/></svg>',
+  clients:'<svg viewBox="0 0 24 24"><circle cx="9" cy="8" r="3.5"/><path d="M2.5 20c.6-3.6 3.2-5.5 6.5-5.5s5.9 1.9 6.5 5.5"/><path d="M16 4.7a3.5 3.5 0 0 1 0 6.6M18.5 14.8c1.7.7 2.7 2.4 3 5.2"/></svg>',
+  credits:'<svg viewBox="0 0 24 24"><rect x="3" y="5" width="18" height="14" rx="3"/><path d="M3 10h18M7 15h4"/></svg>',
+  addClient:'<svg viewBox="0 0 24 24"><circle cx="10" cy="8" r="3.5"/><path d="M3.5 20c.6-3.6 3.2-5.5 6.5-5.5"/><path d="M18 8v6M15 11h6"/></svg>',
+  addCredit:'<svg viewBox="0 0 24 24"><path d="M7 17 17 7M9 7h8v8"/></svg>',
+  addPay:'<svg viewBox="0 0 24 24"><path d="m5 12.5 4.5 4.5L19 7.5"/></svg>'
+};
+const salut = () => new Date().getHours()<18 ? 'Bonjour' : 'Bonsoir';
+const dateLongue = () => new Date().toLocaleDateString('fr-FR',{weekday:'long',day:'numeric',month:'long'});
+
+function afficher(){
+  const p = S.page;
+  let contenu = '';
+  if(p==='accueil'){
+    contenu = `<div class="hello"><span class="date">${dateLongue()}</span><h2>${salut()} 👋</h2><p class="sub" style="margin:0">Voici la situation de vos crédits.</p></div>
+      <div class="quick">
+        <button onclick="formClient()"><span class="ico q1">${IC.addClient}</span>Client</button>
+        <button onclick="formCredit()"><span class="ico q2">${IC.addCredit}</span>Crédit</button>
+        <button onclick="formPaiement()"><span class="ico q3">${IC.addPay}</span>Paiement</button>
+      </div>
+      <div class="card c1"><small>Total des crédits</small><div class="n">${fmt(totalCredits())}</div><small>Montant total accordé</small></div>
+      <div class="card c2"><small>Total des paiements</small><div class="n">${fmt(totalPaye())}</div><small>Montant déjà remboursé</small></div>
+      <div class="card c3"><small>Reste à encaisser</small><div class="n">${fmt(reste())} FCFA</div><small>Crédits non remboursés</small></div>
+      <div class="box"><div class="box-h"><div><h3>Mes clients</h3><p class="sub" style="margin:2px 0 0">Suivez les crédits de vos clients.</p></div>
+      <span class="link" onclick="aller('clients')">Voir tout</span></div>
+      <div style="margin-top:12px">${S.clients.slice(0,5).map(ligneClient).join('')||'<div class="vide">Aucun client pour l’instant.</div>'}</div></div>`;
+  } else if(p==='clients'){
+    const q = S.recherche.toLowerCase();
+    const liste = S.clients.filter(c=>c.name.toLowerCase().includes(q)||(c.phone||'').includes(q));
+    contenu = `<div class="kicker">CLIENTS</div><h2>Mes clients</h2>
+      <button class="btn" onclick="formClient()">+ Nouveau client</button>
+      <input id="rech" placeholder="Rechercher un client..." value="${esc(S.recherche)}" oninput="chercher(this.value)" style="margin-top:14px">
+      <div id="liste">${liste.map(ligneClient).join('')||'<div class="vide">Aucun client trouvé.</div>'}</div>`;
+  } else {
+    const noms = Object.fromEntries(S.clients.map(c=>[c.id,c.name]));
+    const mouv = [...S.credits.map(x=>({...x,t:'credit'})),...S.paiements.map(x=>({...x,t:'paiement'}))]
+      .sort((a,b)=>new Date(b.created_at)-new Date(a.created_at));
+    contenu = `<div class="kicker">CRÉDITS</div><h2>Historique</h2>
+      <button class="btn" onclick="formCredit()">+ Nouveau crédit</button>
+      <div class="box" style="margin-top:14px">${mouv.map(m=>`<div class="row"><div>${esc(noms[m.client_id]||'Client supprimé')}<small>${datefr(m.created_at)} · ${m.t==='credit'?esc(m.note||'Crédit'):'Paiement · '+esc(m.method||'Espèces')}</small></div>
+        <span class="${m.t==='credit'?'plus':'moins'}">${m.t==='credit'?'+':'−'}${fmt(m.amount)} F</span></div>`).join('')||'<div class="vide">Aucun mouvement.</div>'}</div>`;
+  }
+  $('#app').innerHTML = `${MODE_LOCAL?'<div class="mode">Mode local : données enregistrées sur ce téléphone seulement</div>':''}
+    <header><div class="logo">C</div><div><h1>Carnet Pro</h1><p>Gestion des crédits clients</p></div>
+    <button class="espace" onclick="deconnexion()"><i></i>Mon espace</button></header>
+    <main>${contenu}</main>
+    <nav>${[['accueil','Accueil'],['clients','Clients'],['credits','Crédits']].map(([k,l])=>`<button class="${p===k?'on':''}" onclick="aller('${k}')">${IC[k]}<span>${l}</span></button>`).join('')}</nav>`;
+}
+function aller(p){S.page=p;afficher();window.scrollTo(0,0);}
+function chercher(v){
+  S.recherche=v;
+  const q=v.toLowerCase();
+  const l=S.clients.filter(c=>c.name.toLowerCase().includes(q)||(c.phone||'').includes(q));
+  $('#liste').innerHTML = l.map(ligneClient).join('')||'<div class="vide">Aucun client trouvé.</div>';
+}
+
+/* ============ FENÊTRES (formulaires) ============ */
+function ouvrir(html){$('#sheet').innerHTML=html;$('#modal').classList.add('show');}
+function fermer(){$('#modal').classList.remove('show');}
+const options = sel => S.clients.map(c=>`<option value="${c.id}" ${c.id===sel?'selected':''}>${esc(c.name)}</option>`).join('');
+
+function formClient(){
+  ouvrir(`<h3>Nouveau client</h3>
+    <label>Nom complet</label><input id="f_nom" placeholder="Ex : Amadou Ndiaye">
+    <label>Téléphone</label><input id="f_tel" type="tel" placeholder="77 000 00 01">
+    <button class="btn" style="width:100%" onclick="saveClient()">Enregistrer</button>`);
+}
+async function saveClient(){
+  const name=$('#f_nom').value.trim(), phone=$('#f_tel').value.trim();
+  if(!name) return toast('Entrez un nom');
+  try{ await DB.ajouter('clients',{name,phone}); fermer(); toast('Client ajouté'); charger(); }
+  catch(e){ toast('Erreur : '+e.message); }
+}
+function formCredit(sel){
+  if(!S.clients.length) return toast('Ajoutez d’abord un client');
+  ouvrir(`<h3>Nouveau crédit</h3>
+    <label>Client</label><select id="f_cl">${options(sel)}</select>
+    <label>Montant (FCFA)</label><input id="f_mt" type="number" inputmode="numeric" placeholder="10000">
+    <label>Note (facultatif)</label><input id="f_note" placeholder="Ex : Sac de riz">
+    <button class="btn" style="width:100%" onclick="saveCredit()">Enregistrer le crédit</button>`);
+}
+async function saveCredit(){
+  const amount=Number($('#f_mt').value);
+  if(!(amount>0)) return toast('Montant invalide');
+  try{ await DB.ajouter('credits',{client_id:$('#f_cl').value,amount,note:$('#f_note').value.trim()}); fermer(); toast('Crédit ajouté'); charger(); }
+  catch(e){ toast('Erreur : '+e.message); }
+}
+function formPaiement(id){
+  if(!S.clients.length) return toast('Ajoutez d’abord un client');
+  ouvrir(`<h3>Nouveau paiement</h3>
+    <label>Client</label><select id="f_cl">${options(id)}</select>
+    <label>Montant payé (FCFA)</label><input id="f_mt" type="number" inputmode="numeric" value="${id?Math.max(reste(id),0):''}">
+    <label>Moyen de paiement</label>
+    <select id="f_mode"><option>Espèces</option><option>Wave</option><option>Orange Money</option></select>
+    <button class="btn" style="width:100%" onclick="savePaiement()">Enregistrer le paiement</button>`);
+}
+async function savePaiement(){
+  const amount=Number($('#f_mt').value);
+  if(!(amount>0)) return toast('Montant invalide');
+  try{
+    const p = await DB.ajouter('payments',{client_id:$('#f_cl').value,amount,method:$('#f_mode').value});
+    await charger();   // recalcule les totaux
+    ecranRecu(p);      // propose d'envoyer le reçu
+  }catch(e){ toast('Erreur : '+e.message); }
+}
+function ecranRecu(p){
+  const c=S.clients.find(x=>x.id===p.client_id);
+  ouvrir(`<h3>✓ Paiement enregistré</h3>
+    <div class="row"><span>${esc(c?c.name:'')}</span><b class="moins">${fmt(p.amount)} F</b></div>
+    <div class="row"><span>Moyen</span><b>${esc(p.method||'Espèces')}</b></div>
+    <div class="row"><span>Reste à payer</span><b class="plus">${fmt(resteAu(p))} F</b></div>
+    <button class="btn" style="width:100%;margin-top:14px" onclick="envoyerRecu('${p.id}')">Envoyer le reçu par WhatsApp</button>
+    <button class="btn sec" style="width:100%;margin-top:10px" onclick="fermer()">Fermer</button>`);
+}
+/* Reste à payer au moment d'un paiement donné (pour que l'ancien reçu reste exact) */
+function resteAu(p){
+  const t=new Date(p.created_at), id=p.client_id;
+  const cr=S.credits.filter(x=>x.client_id===id&&new Date(x.created_at)<=t).reduce((a,x)=>a+Number(x.amount),0);
+  const pa=S.paiements.filter(x=>x.client_id===id&&new Date(x.created_at)<=t).reduce((a,x)=>a+Number(x.amount),0);
+  return cr-pa;
+}
+function envoyerRecu(pid){
+  const p=S.paiements.find(x=>x.id===pid); if(!p) return;
+  const c=S.clients.find(x=>x.id===p.client_id); if(!c) return;
+  let tel=(c.phone||'').replace(/\D/g,'');
+  if(!tel) return toast('Pas de numéro pour ce client');
+  if(tel.length===9) tel='221'+tel;
+  const r=resteAu(p);
+  const msg=`🧾 *REÇU DE PAIEMENT* n° ${p.id.slice(0,6).toUpperCase()}\n\nClient : ${c.name}\nMontant reçu : ${fmt(p.amount)} FCFA\nMoyen : ${p.method||'Espèces'}\nDate : ${datefr(p.created_at)}\nReste à payer : ${fmt(Math.max(r,0))} FCFA\n\n${r<=0?'Votre compte est soldé. ':''}Merci pour votre confiance !`;
+  window.open(`https://wa.me/${tel}?text=${encodeURIComponent(msg)}`,'_blank');
+}
+function detailClient(id){
+  const c=S.clients.find(x=>x.id===id); if(!c) return;
+  const mouv=[...S.credits.filter(x=>x.client_id===id).map(x=>({...x,t:'credit'})),
+              ...S.paiements.filter(x=>x.client_id===id).map(x=>({...x,t:'paiement'}))]
+              .sort((a,b)=>new Date(b.created_at)-new Date(a.created_at));
+  ouvrir(`<h3>${esc(c.name)}</h3><p class="sub">${esc(c.phone||'')}</p>
+    <div class="row"><span>Total crédits</span><b>${fmt(totalCredits(id))} F</b></div>
+    <div class="row"><span>Total payé</span><b>${fmt(totalPaye(id))} F</b></div>
+    <div class="row"><span>Reste à payer</span><b class="plus">${fmt(reste(id))} F</b></div>
+    <div style="display:flex;gap:8px;margin:14px 0"><button class="btn sec small" onclick="formCredit('${id}')">+ Crédit</button>
+      <button class="btn sec small" onclick="formPaiement('${id}')">+ Paiement</button>
+      <button class="btn sec small" onclick="whatsapp('${id}')">WhatsApp</button></div>
+    ${mouv.map(m=>`<div class="row"><div>${m.t==='credit'?esc(m.note||'Crédit'):'Paiement · '+esc(m.method||'Espèces')}<small>${datefr(m.created_at)}${m.t==='paiement'?` · <a class="link" style="font-size:13px" onclick="envoyerRecu('${m.id}')">Envoyer le reçu</a>`:''}</small></div>
+      <span class="${m.t==='credit'?'plus':'moins'}">${m.t==='credit'?'+':'−'}${fmt(m.amount)} F</span></div>`).join('')||'<div class="vide">Aucun mouvement.</div>'}
+    <button class="btn red small" style="margin-top:16px" onclick="supprClient('${id}')">Supprimer ce client</button>`);
+}
+async function supprClient(id){
+  if(!confirm('Supprimer ce client et tout son historique ?')) return;
+  try{
+    if(MODE_LOCAL){
+      for(const t of ['credits','payments']){
+        const l=JSON.parse(localStorage.getItem('cp_'+t)||'[]').filter(x=>x.client_id!==id);
+        localStorage.setItem('cp_'+t,JSON.stringify(l));
+      }
+    }
+    await DB.supprimer('clients',id); fermer(); toast('Client supprimé'); charger();
+  }catch(e){ toast('Erreur : '+e.message); }
+}
+
+/* ============ WHATSAPP ============ */
+function whatsapp(id){
+  const c=S.clients.find(x=>x.id===id); if(!c) return;
+  let tel=(c.phone||'').replace(/\D/g,'');
+  if(!tel) return toast('Pas de numéro pour ce client');
+  if(tel.length===9) tel='221'+tel;
+  const r=reste(id);
+  const msg = r>0
+    ? `Bonjour ${c.name}, petit rappel : il vous reste ${fmt(r)} FCFA à rembourser. Merci !`
+    : `Bonjour ${c.name}, votre compte est soldé. Merci pour votre confiance !`;
+  window.open(`https://wa.me/${tel}?text=${encodeURIComponent(msg)}`,'_blank');
+}
+
+demarrer();
+</script>
+</body>
+</html>
