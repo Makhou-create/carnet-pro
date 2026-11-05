@@ -706,7 +706,40 @@ button {
   border-radius: 9px;
   font-weight: 600;
 }
+.detail-stats {
+  display: grid;
+  gap: 10px;
+  margin-top: 18px;
+}
 
+.detail-stat {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 12px;
+  padding: 14px;
+  border-radius: 12px;
+  font-size: 13px;
+}
+
+.detail-stat strong {
+  font-size: 15px;
+}
+
+.detail-credit {
+  background: #eaf0ff;
+  color: #1d4ed8;
+}
+
+.detail-paid {
+  background: #e5f7ee;
+  color: #047857;
+}
+
+.detail-balance {
+  background: #fff3df;
+  color: #b45309;
+  }
 .mini-button:hover {
   background: #dce7ff;
 }
