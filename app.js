@@ -93,6 +93,7 @@ document.getElementById("creditForm").addEventListener("submit",e=>{
 list.addEventListener("click",e=>{
   const pay=e.target.closest("[data-pay]");
   const remind=e.target.closest("[data-remind]");
+  const row=e.target.closest(".customer-row");
   if(pay){
     const c=customers.find(x=>x.id===Number(pay.dataset.pay));
     const form=document.getElementById("paymentForm");
