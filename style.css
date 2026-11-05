@@ -592,3 +592,128 @@ button {
   }
   }
   
+/* =================================
+   NAVIGATION PROFESSIONNELLE
+================================= */
+
+.bottom-nav {
+  padding: 10px 12px calc(10px + env(safe-area-inset-bottom));
+  background: rgba(255, 255, 255, 0.97);
+  backdrop-filter: blur(15px);
+  border-top: 1px solid #e5eaf2;
+  box-shadow: 0 -5px 25px rgba(20, 40, 80, 0.07);
+  justify-content: center;
+  gap: 12px;
+}
+
+.nav-item {
+  flex: 1;
+  max-width: 150px;
+  padding: 8px 5px;
+  border-radius: 13px;
+  color: #8994a8;
+  font-size: 11px;
+  font-weight: 600;
+  transition: all .2s ease;
+}
+
+.nav-item span {
+  font-size: 23px;
+  line-height: 1.2;
+}
+
+.nav-item.active {
+  background: #eaf0ff;
+  color: #2563eb;
+}
+
+.nav-item:active {
+  transform: scale(.96);
+}
+
+/* =================================
+   CLIENTS PLUS COLORÉS
+================================= */
+
+.customer-row {
+  position: relative;
+  overflow: hidden;
+  background: linear-gradient(110deg, #ffffff, #f8faff);
+  border: 1px solid #e6ebf5;
+  border-left: 4px solid #4f7df3;
+  border-radius: 15px;
+  padding: 15px 12px;
+  box-shadow: 0 3px 10px rgba(30, 60, 110, .04);
+}
+
+.customer-row:nth-child(2n) {
+  border-left-color: #16a36a;
+  background: linear-gradient(110deg, #ffffff, #f3fbf7);
+}
+
+.customer-row:nth-child(3n) {
+  border-left-color: #e99a24;
+  background: linear-gradient(110deg, #ffffff, #fffaf1);
+}
+
+.customer-row:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 7px 16px rgba(30, 60, 110, .09);
+}
+
+.avatar {
+  background: linear-gradient(135deg, #3b82f6, #1d4ed8);
+  color: white;
+  box-shadow: 0 3px 9px rgba(37, 99, 235, .22);
+}
+
+.customer-row:nth-child(2n) .avatar {
+  background: linear-gradient(135deg, #34d399, #059669);
+}
+
+.customer-row:nth-child(3n) .avatar {
+  background: linear-gradient(135deg, #fbbf24, #ea580c);
+}
+
+.customer-info strong {
+  color: #172033;
+  font-size: 14px;
+  font-weight: 700;
+}
+
+.customer-info small {
+  color: #718096;
+}
+
+.customer-right strong {
+  color: #dc7b12;
+  font-size: 14px;
+  font-weight: 800;
+}
+
+.status {
+  background: #fff0d5;
+  color: #a85c00;
+  border: 1px solid #ffdfa4;
+  padding: 5px 10px;
+  border-radius: 20px;
+}
+
+.mini-button {
+  background: #eaf0ff;
+  border: 1px solid #d6e2ff;
+  color: #245bd1;
+  border-radius: 9px;
+  font-weight: 600;
+}
+
+.mini-button:hover {
+  background: #dce7ff;
+}
+
+.empty-state {
+  background: #f5f8ff;
+  border-color: #b9ccff;
+  color: #64748b;
+    }
+  
