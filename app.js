@@ -110,6 +110,19 @@ list.addEventListener("click",e=>{
     const phone=c.phone.replace(/\D/g,"");
     const message=`Bonjour ${c.name}, petit rappel concernant votre solde de ${money(balance)} FCFA. Merci et bonne journée.`;
     window.open(`https://wa.me/${phone}?text=${encodeURIComponent(message)}`,"_blank");
+      if(!pay && !remind && row){
+    const c=customers.find(x=>x.id===Number(row.dataset.customerId));
+
+    if(!c)return;
+
+    document.getElementById("detailName").textContent=c.name;
+    document.getElementById("detailPhone").textContent=c.phone || "Téléphone non renseigné";
+    document.getElementById("detailCredit").textContent=money(c.credit)+" FCFA";
+    document.getElementById("detailPaid").textContent=money(c.paid)+" FCFA";
+    document.getElementById("detailBalance").textContent=money(c.credit-c.paid)+" FCFA";
+
+    customerDetailDialog.showModal();
+      }
   }
 });
 
