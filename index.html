@@ -14,11 +14,37 @@ header{background:rgba(245,247,251,.85);-webkit-backdrop-filter:blur(14px);backd
 header h1{margin:0;font-size:19px;letter-spacing:-.3px}header p{margin:1px 0 0;color:var(--gris);font-size:12.5px}
 .espace{margin-left:auto;display:flex;align-items:center;gap:7px;background:#fff;border:1px solid var(--bord);border-radius:20px;padding:8px 13px;color:var(--texte);font:700 13px system-ui,sans-serif;cursor:pointer;box-shadow:0 2px 8px rgba(20,27,52,.06)}
 .espace i{width:8px;height:8px;border-radius:50%;background:var(--vert);box-shadow:0 0 0 4px rgba(15,157,107,.18)}
-svg{fill:none;stroke:currentColor;stroke-width:1.9;stroke-linecap:round;stroke-linejoin:round}
-.hello{margin:6px 0 16px}
-.date{display:inline-block;background:#eaf0ff;color:var(--bleu);font-weight:700;font-size:12px;padding:5px 11px;border-radius:20px}
+nav svg,.ico svg{fill:none;stroke:currentColor;stroke-width:1.9;stroke-linecap:round;stroke-linejoin:round}
+.banner{position:relative;overflow:hidden;margin:-16px -16px 18px;padding:24px 20px 56px;min-height:205px;background:linear-gradient(135deg,#1e40af 0%,#2563eb 55%,#3b82f6 100%);border-radius:0 0 32px 32px;color:#fff;box-shadow:0 14px 30px rgba(37,99,235,.25)}
+.banner .txt{position:relative;z-index:2;max-width:58%}
+.banner .sub{color:rgba(255,255,255,.88);margin:0}
+.anim{position:absolute;inset:0;width:100%;height:100%}
+.anim .drift{animation:drift 7s ease-in-out infinite}
+.anim .d2{animation-delay:-3s}.anim .d3{animation-delay:-5s;animation-duration:9s}
+.anim .wv1{animation:slide 9s linear infinite}
+.anim .wv2{animation:slide 14s linear infinite reverse}
+@keyframes drift{0%,100%{transform:translate(0,0)}50%{transform:translate(10px,-8px)}}
+@keyframes slide{from{transform:translateX(0)}to{transform:translateX(-196px)}}
+.anim *{transform-box:fill-box;transform-origin:center}
+.anim .blob{animation:pulse 4s ease-in-out infinite}
+.anim .book{transform-origin:50% 100%;animation:sway 5s ease-in-out infinite}
+.anim .ln{fill:none;stroke:#b9c8ee;stroke-width:3.5;stroke-linecap:round;stroke-dasharray:30;animation:write 5s ease-in-out infinite}
+.anim .l2{animation-delay:.5s}.anim .l3{animation-delay:1s}.anim .l4{animation-delay:1.5s}
+.anim .coin{animation:floaty 3s ease-in-out infinite}
+.anim .c2{animation-delay:-1.4s}
+.anim .spark{fill:none;stroke-width:2.2;stroke-linecap:round;animation:twinkle 2.4s ease-in-out infinite}
+.anim .s2{animation-delay:-1.2s}
+.wave{display:inline-block;transform-origin:70% 70%;animation:wave 2.6s ease-in-out infinite}
+@keyframes pulse{0%,100%{transform:scale(1)}50%{transform:scale(1.06)}}
+@keyframes sway{0%,100%{transform:rotate(-3deg)}50%{transform:rotate(3deg)}}
+@keyframes write{0%{stroke-dashoffset:30}20%,80%{stroke-dashoffset:0}95%,100%{stroke-dashoffset:30}}
+@keyframes floaty{0%,100%{transform:translateY(0)}50%{transform:translateY(-8px)}}
+@keyframes twinkle{0%,100%{opacity:.25;transform:scale(.7)}50%{opacity:1;transform:scale(1.15)}}
+@keyframes wave{0%,60%,100%{transform:rotate(0)}10%{transform:rotate(16deg)}20%{transform:rotate(-8deg)}30%{transform:rotate(16deg)}40%{transform:rotate(-4deg)}50%{transform:rotate(10deg)}}
+@media (prefers-reduced-motion:reduce){.anim *,.wave{animation:none!important}}
+.date{display:inline-block;background:rgba(255,255,255,.18);color:#fff;font-weight:700;font-size:12px;padding:5px 11px;border-radius:20px}
 .date::first-letter{text-transform:uppercase}
-.hello h2{font-size:32px;letter-spacing:-.8px;margin:10px 0 2px}
+.banner h2{font-size:32px;letter-spacing:-.8px;margin:12px 0 4px;color:#fff}
 .quick{display:grid;grid-template-columns:repeat(3,1fr);gap:10px;margin-bottom:6px}
 .quick button{background:#fff;border:1px solid var(--bord);border-radius:20px;padding:14px 6px 12px;display:flex;flex-direction:column;align-items:center;gap:8px;font:700 13px system-ui,sans-serif;color:var(--texte);cursor:pointer;box-shadow:0 4px 14px rgba(20,27,52,.05)}
 .quick .ico{width:44px;height:44px;border-radius:15px;display:grid;place-items:center}
@@ -191,6 +217,26 @@ const IC = {
   addCredit:'<svg viewBox="0 0 24 24"><path d="M7 17 17 7M9 7h8v8"/></svg>',
   addPay:'<svg viewBox="0 0 24 24"><path d="m5 12.5 4.5 4.5L19 7.5"/></svg>'
 };
+/* Illustration animée de l'accueil : SVG + animations CSS (aucune image à télécharger) */
+const ANIM = `<svg class="anim" viewBox="0 0 390 190" preserveAspectRatio="xMaxYMid slice" aria-hidden="true">
+  <circle class="drift d1" cx="335" cy="30" r="62" fill="#fff" fill-opacity=".09"/>
+  <circle class="drift d2" cx="40" cy="175" r="70" fill="#fff" fill-opacity=".07"/>
+  <circle class="drift d3" cx="215" cy="90" r="26" fill="#fff" fill-opacity=".07"/>
+  <g class="book">
+    <rect x="262" y="42" width="52" height="66" rx="8" fill="#0f2a6b"/>
+    <rect x="268" y="42" width="46" height="66" rx="7" fill="#fff"/>
+    <path class="ln l1" d="M276 58h28"/><path class="ln l2" d="M276 68h22"/>
+    <path class="ln l3" d="M276 78h26"/><path class="ln l4" d="M276 88h16"/>
+  </g>
+  <g class="coin c1"><circle cx="348" cy="52" r="13" fill="#fbbf24"/><circle cx="348" cy="52" r="8.5" fill="none" stroke="#f59e0b" stroke-width="2.2"/></g>
+  <g class="coin c2"><circle cx="244" cy="114" r="10" fill="#34d399"/><path d="m239.5 114 3.5 3.5 6.5-7" fill="none" stroke="#fff" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/></g>
+  <g class="coin c3"><circle cx="332" cy="120" r="8" fill="#fb923c"/><circle cx="332" cy="120" r="4.5" fill="none" stroke="#fff" stroke-opacity=".7" stroke-width="1.8"/></g>
+  <path class="spark s1" d="M372 96v9M367.5 100.5h9" stroke="#fde68a"/>
+  <path class="spark s2" d="M224 40v8M220 44h8" stroke="#fff"/>
+  <path class="spark s3" d="M300 18v7M296.5 21.5h7" stroke="#fde68a"/>
+  <path class="wv1" d="M0 160 Q49 142 98 160 T196 160 T294 160 T392 160 T490 160 T588 160 T686 160 T784 160 V190 H0Z" fill="#fff" fill-opacity=".14"/>
+  <path class="wv2" d="M0 172 Q49 156 98 172 T196 172 T294 172 T392 172 T490 172 T588 172 T686 172 T784 172 V190 H0Z" fill="#fff" fill-opacity=".1"/>
+</svg>`;
 const salut = () => new Date().getHours()<18 ? 'Bonjour' : 'Bonsoir';
 const dateLongue = () => new Date().toLocaleDateString('fr-FR',{weekday:'long',day:'numeric',month:'long'});
 
@@ -198,7 +244,7 @@ function afficher(){
   const p = S.page;
   let contenu = '';
   if(p==='accueil'){
-    contenu = `<div class="hello"><span class="date">${dateLongue()}</span><h2>${salut()} 👋</h2><p class="sub" style="margin:0">Voici la situation de vos crédits.</p></div>
+    contenu = `<div class="banner">${ANIM}<div class="txt"><span class="date">${dateLongue()}</span><h2>${salut()} <span class="wave">👋</span></h2><p class="sub">Voici la situation de vos crédits.</p></div></div>
       <div class="quick">
         <button onclick="formClient()"><span class="ico q1">${IC.addClient}</span>Client</button>
         <button onclick="formCredit()"><span class="ico q2">${IC.addCredit}</span>Crédit</button>
