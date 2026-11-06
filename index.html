@@ -8,21 +8,24 @@
 <style>
 :root{--bleu:#2563eb;--vert:#0f9d6b;--orange:#ea6a0c;--rouge:#dc2626;--fond:#f5f7fb;--texte:#141b34;--gris:#6b7794;--bord:#e3e8f2}
 *{box-sizing:border-box;-webkit-tap-highlight-color:transparent}
-body{margin:0;font-family:system-ui,-apple-system,Roboto,sans-serif;background:var(--fond);color:var(--texte);padding-bottom:120px}
-main{padding:16px;max-width:640px;margin:auto}
+body{margin:0;font-family:system-ui,-apple-system,Roboto,sans-serif;background:var(--fond);color:var(--texte);padding-bottom:84px;font-size:15px}
+main{padding:14px;max-width:640px;margin:auto}
 
-/* ---------- En-tête ---------- */
-header{background:rgba(245,247,251,.85);-webkit-backdrop-filter:blur(14px);backdrop-filter:blur(14px);padding:14px 16px;display:flex;align-items:center;gap:12px;position:sticky;top:0;z-index:5}
-.logo{width:44px;height:44px;border-radius:15px;background:linear-gradient(135deg,#3b82f6,#1d4ed8);color:#fff;font-weight:800;font-size:21px;display:grid;place-items:center;box-shadow:0 8px 18px rgba(37,99,235,.35)}
-header h1{margin:0;font-size:19px;letter-spacing:-.3px}header p{margin:1px 0 0;color:var(--gris);font-size:12.5px}
-.espace{margin-left:auto;display:flex;align-items:center;gap:7px;background:#fff;border:1px solid var(--bord);border-radius:20px;padding:8px 13px;color:var(--texte);font:700 13px system-ui,sans-serif;cursor:pointer;box-shadow:0 2px 8px rgba(20,27,52,.06)}
-.espace i{width:8px;height:8px;border-radius:50%;background:var(--vert);box-shadow:0 0 0 4px rgba(15,157,107,.18)}
+/* ---------- En-tête (compact) ---------- */
+header{background:rgba(245,247,251,.88);-webkit-backdrop-filter:blur(14px);backdrop-filter:blur(14px);padding:8px 14px;display:flex;align-items:center;gap:10px;position:sticky;top:0;z-index:5}
+.logo{width:36px;height:36px;border-radius:12px;background:linear-gradient(135deg,#3b82f6,#1d4ed8);color:#fff;font-weight:800;font-size:18px;display:grid;place-items:center;box-shadow:0 6px 14px rgba(37,99,235,.3)}
+header h1{margin:0;font-size:17px;letter-spacing:-.3px}header p{margin:0;color:var(--gris);font-size:12px}
+.espace{margin-left:auto;display:flex;align-items:center;gap:6px;background:#fff;border:1px solid var(--bord);border-radius:18px;padding:6px 11px;color:var(--texte);font:700 12px system-ui,sans-serif;cursor:pointer;box-shadow:0 2px 6px rgba(20,27,52,.06)}
+.espace i{width:7px;height:7px;border-radius:50%;background:var(--vert);box-shadow:0 0 0 3px rgba(15,157,107,.18)}
 nav svg,.ico svg{fill:none;stroke:currentColor;stroke-width:1.9;stroke-linecap:round;stroke-linejoin:round}
 
-/* ---------- Bannière animée ---------- */
-.banner{position:relative;overflow:hidden;margin:-16px -16px 18px;padding:24px 20px 56px;min-height:205px;background:linear-gradient(135deg,#1e40af 0%,#2563eb 55%,#3b82f6 100%);border-radius:0 0 32px 32px;color:#fff;box-shadow:0 14px 30px rgba(37,99,235,.25)}
-.banner .txt{position:relative;z-index:2;max-width:58%}
-.banner .sub{color:rgba(255,255,255,.88);margin:0}
+/* ---------- Bannière animée (compacte) ---------- */
+.banner{position:relative;overflow:hidden;margin:-14px -14px 12px;padding:12px 16px 34px;min-height:128px;background:linear-gradient(135deg,#1e40af 0%,#2563eb 55%,#3b82f6 100%);border-radius:0 0 24px 24px;color:#fff;box-shadow:0 10px 22px rgba(37,99,235,.22)}
+.banner .txt{position:relative;z-index:2;max-width:60%}
+.banner .sub{font-size:13px;color:rgba(255,255,255,.88);margin:0}
+.banner h2{font-size:24px;letter-spacing:-.5px;margin:6px 0 2px;color:#fff}
+.date{display:inline-block;background:rgba(255,255,255,.18);color:#fff;font-weight:700;font-size:11px;padding:4px 9px;border-radius:16px}
+.date::first-letter{text-transform:uppercase}
 .anim{position:absolute;inset:0;width:100%;height:100%}
 .anim *{transform-box:fill-box;transform-origin:center}
 .anim .drift{animation:drift 7s ease-in-out infinite}
@@ -30,46 +33,43 @@ nav svg,.ico svg{fill:none;stroke:currentColor;stroke-width:1.9;stroke-linecap:r
 .anim .wv1{animation:slide 9s linear infinite}
 .anim .wv2{animation:slide 14s linear infinite reverse}
 .anim .book{transform-origin:50% 100%;animation:sway 5s ease-in-out infinite}
-.anim .ln{fill:none;stroke:#b9c8ee;stroke-width:3.5;stroke-linecap:round;stroke-dasharray:30;animation:write 5s ease-in-out infinite}
+.anim .ln{fill:none;stroke:#b9c8ee;stroke-width:3;stroke-linecap:round;stroke-dasharray:30;animation:write 5s ease-in-out infinite}
 .anim .l2{animation-delay:.5s}.anim .l3{animation-delay:1s}.anim .l4{animation-delay:1.5s}
 .anim .coin{animation:floaty 3s ease-in-out infinite}
 .anim .c2{animation-delay:-1.4s}
-.anim .spark{fill:none;stroke-width:2.2;stroke-linecap:round;animation:twinkle 2.4s ease-in-out infinite}
+.anim .spark{fill:none;stroke-width:2;stroke-linecap:round;animation:twinkle 2.4s ease-in-out infinite}
 .anim .s2{animation-delay:-1.2s}
 .wave{display:inline-block;transform-origin:70% 70%;animation:wave 2.6s ease-in-out infinite}
-@keyframes drift{0%,100%{transform:translate(0,0)}50%{transform:translate(10px,-8px)}}
+@keyframes drift{0%,100%{transform:translate(0,0)}50%{transform:translate(8px,-6px)}}
 @keyframes slide{from{transform:translateX(0)}to{transform:translateX(-196px)}}
 @keyframes sway{0%,100%{transform:rotate(-3deg)}50%{transform:rotate(3deg)}}
 @keyframes write{0%{stroke-dashoffset:30}20%,80%{stroke-dashoffset:0}95%,100%{stroke-dashoffset:30}}
-@keyframes floaty{0%,100%{transform:translateY(0)}50%{transform:translateY(-8px)}}
+@keyframes floaty{0%,100%{transform:translateY(0)}50%{transform:translateY(-6px)}}
 @keyframes twinkle{0%,100%{opacity:.25;transform:scale(.7)}50%{opacity:1;transform:scale(1.15)}}
 @keyframes wave{0%,60%,100%{transform:rotate(0)}10%{transform:rotate(16deg)}20%{transform:rotate(-8deg)}30%{transform:rotate(16deg)}40%{transform:rotate(-4deg)}50%{transform:rotate(10deg)}}
 @media (prefers-reduced-motion:reduce){.anim *,.wave{animation:none!important}}
-.date{display:inline-block;background:rgba(255,255,255,.18);color:#fff;font-weight:700;font-size:12px;padding:5px 11px;border-radius:20px}
-.date::first-letter{text-transform:uppercase}
-.banner h2{font-size:32px;letter-spacing:-.8px;margin:12px 0 4px;color:#fff}
 
-/* ---------- Raccourcis ---------- */
-.quick{display:grid;grid-template-columns:repeat(3,1fr);gap:10px;margin-bottom:6px}
-.quick button{background:#fff;border:1px solid var(--bord);border-radius:20px;padding:14px 6px 12px;display:flex;flex-direction:column;align-items:center;gap:8px;font:700 13px system-ui,sans-serif;color:var(--texte);cursor:pointer;box-shadow:0 4px 14px rgba(20,27,52,.05)}
-.quick .ico{width:44px;height:44px;border-radius:15px;display:grid;place-items:center}
-.quick .ico svg{width:22px;height:22px}
+/* ---------- Raccourcis (compacts) ---------- */
+.quick{display:grid;grid-template-columns:repeat(3,1fr);gap:8px;margin-bottom:8px}
+.quick button{background:#fff;border:1px solid var(--bord);border-radius:16px;padding:8px 4px 7px;display:flex;flex-direction:column;align-items:center;gap:4px;font:700 12px system-ui,sans-serif;color:var(--texte);cursor:pointer;box-shadow:0 3px 10px rgba(20,27,52,.05)}
+.quick .ico{width:30px;height:30px;border-radius:10px;display:grid;place-items:center}
+.quick .ico svg{width:17px;height:17px}
 .q1{background:#e8efff;color:var(--bleu)}.q2{background:#fff1e3;color:var(--orange)}.q3{background:#e2f7ee;color:var(--vert)}
 
-/* ---------- Tableau de bord en grille ---------- */
-.grid{display:grid;grid-template-columns:1fr 1fr;gap:12px;margin:14px 0}
-.stat{position:relative;overflow:hidden;border-radius:22px;padding:16px;color:#fff;min-height:128px;display:flex;flex-direction:column;justify-content:space-between;cursor:default}
-.stat small{opacity:.92;font-size:13px;font-weight:600;display:block}
-.stat>small{padding-right:42px}
-.stat .n{font-size:28px;font-weight:800;letter-spacing:-.6px;margin:8px 0 2px;line-height:1.1}
-.stat .n em{font-style:normal;font-size:14px;font-weight:700;opacity:.85;margin-left:4px}
-.stat .ic{position:absolute;right:12px;top:12px;width:34px;height:34px;border-radius:12px;background:rgba(255,255,255,.22);display:grid;place-items:center}
-.stat .ic svg{width:18px;height:18px;fill:none;stroke:#fff;stroke-width:2;stroke-linecap:round;stroke-linejoin:round}
+/* ---------- Tableau de bord en grille (compact) ---------- */
+.grid{display:grid;grid-template-columns:1fr 1fr;gap:8px;margin:8px 0}
+.stat{position:relative;overflow:hidden;border-radius:16px;padding:10px 12px;color:#fff;cursor:default}
+.stat small{opacity:.92;font-size:11.5px;font-weight:600;display:block}
+.stat>small{padding-right:30px}
+.stat .n{font-size:21px;font-weight:800;letter-spacing:-.4px;margin:3px 0 1px;line-height:1.1}
+.stat .n em{font-style:normal;font-size:11px;font-weight:700;opacity:.85;margin-left:3px}
+.stat .ic{position:absolute;right:9px;top:9px;width:26px;height:26px;border-radius:9px;background:rgba(255,255,255,.22);display:grid;place-items:center}
+.stat .ic svg{width:14px;height:14px;fill:none;stroke:#fff;stroke-width:2;stroke-linecap:round;stroke-linejoin:round}
 .stat .ic.dark{background:#eaf0ff}.stat .ic.dark svg{stroke:var(--bleu)}
 .stat.tap{cursor:pointer}
 .wide{grid-column:span 2}
-.bar{height:8px;border-radius:8px;background:rgba(255,255,255,.3);overflow:hidden;margin-top:10px}
-.bar i{display:block;height:100%;background:#fff;border-radius:8px;transition:width .6s}
+.bar{height:6px;border-radius:6px;background:rgba(255,255,255,.3);overflow:hidden;margin-top:6px}
+.bar i{display:block;height:100%;background:#fff;border-radius:6px;transition:width .6s}
 .s-blue{background:linear-gradient(135deg,#2563eb,#1e40af)}
 .s-green{background:linear-gradient(135deg,#10b981,#047857)}
 .s-orange{background:linear-gradient(135deg,#f59e0b,#ea580c)}
@@ -78,51 +78,52 @@ nav svg,.ico svg{fill:none;stroke:currentColor;stroke-width:1.9;stroke-linecap:r
 .s-white small{color:var(--gris);opacity:1}
 
 /* ---------- Divers ---------- */
-.kicker{color:var(--bleu);font-weight:800;letter-spacing:.12em;font-size:13px;margin:8px 0}
-h2{margin:4px 0;font-size:30px}
-.sub{color:var(--gris);margin:0 0 14px}
-.btn{border:0;border-radius:14px;padding:13px 18px;font-weight:700;font-size:16px;background:var(--bleu);color:#fff;cursor:pointer}
+.kicker{color:var(--bleu);font-weight:800;letter-spacing:.12em;font-size:12px;margin:4px 0}
+h2{margin:2px 0 8px;font-size:24px}
+.sub{color:var(--gris);margin:0 0 10px}
+.btn{border:0;border-radius:12px;padding:11px 16px;font-weight:700;font-size:15px;background:var(--bleu);color:#fff;cursor:pointer}
 .btn.sec{background:#eaf0ff;color:var(--bleu)}.btn.red{background:#fee2e2;color:var(--rouge)}
-.btn.small{padding:8px 12px;font-size:14px;border-radius:12px}
-.box{background:#fff;border:1px solid var(--bord);border-radius:22px;padding:16px;margin:14px 0}
+.btn.small{padding:6px 10px;font-size:13px;border-radius:10px}
+.box{background:#fff;border:1px solid var(--bord);border-radius:18px;padding:12px;margin:10px 0}
 .box-h{display:flex;justify-content:space-between;align-items:center;gap:10px}
-.box h3{margin:0;font-size:22px}
-.link{color:var(--bleu);font-weight:800;cursor:pointer;font-size:17px;white-space:nowrap}
-input,select,textarea{width:100%;padding:13px;border:1px solid var(--bord);border-radius:14px;font-size:16px;background:#f8f9fd;margin:6px 0 10px;font-family:inherit}
-label{font-size:13px;font-weight:700;color:var(--gris)}
-.chips{display:flex;gap:8px;margin:-2px 0 12px;flex-wrap:wrap}
-.chips button{border:1px solid var(--bord);background:#fff;border-radius:20px;padding:7px 12px;font-weight:700;font-size:13px;color:var(--bleu);cursor:pointer}
-.cl{border:1px solid var(--bord);border-left:5px solid var(--bleu);border-radius:18px;padding:14px;margin:10px 0;background:#fff}
+.box h3{margin:0;font-size:18px}
+.box .sub{font-size:13px}
+.link{color:var(--bleu);font-weight:800;cursor:pointer;font-size:14px;white-space:nowrap}
+input,select,textarea{width:100%;padding:11px;border:1px solid var(--bord);border-radius:12px;font-size:16px;background:#f8f9fd;margin:5px 0 8px;font-family:inherit}
+label{font-size:12.5px;font-weight:700;color:var(--gris)}
+.chips{display:flex;gap:8px;margin:-2px 0 10px;flex-wrap:wrap}
+.chips button{border:1px solid var(--bord);background:#fff;border-radius:18px;padding:6px 11px;font-weight:700;font-size:12.5px;color:var(--bleu);cursor:pointer}
+.cl{border:1px solid var(--bord);border-left:4px solid var(--bleu);border-radius:15px;padding:10px;margin:8px 0;background:#fff}
 .cl.ok{border-left-color:var(--vert)}
 .cl.late-c{border-left-color:var(--rouge)}
-.cl-top{display:flex;gap:12px;align-items:center;cursor:pointer}
-.av{width:48px;height:48px;border-radius:50%;background:linear-gradient(135deg,#2563eb,#1e40af);color:#fff;font-weight:800;display:grid;place-items:center;flex:none}
+.cl-top{display:flex;gap:10px;align-items:center;cursor:pointer}
+.av{width:38px;height:38px;border-radius:50%;background:linear-gradient(135deg,#2563eb,#1e40af);color:#fff;font-weight:800;font-size:14px;display:grid;place-items:center;flex:none}
 .cl.ok .av{background:linear-gradient(135deg,#10b981,#047857)}
 .cl.late-c .av{background:linear-gradient(135deg,#ef4444,#b91c1c)}
-.cl-info{flex:1;min-width:0}.cl-info b{display:block}.cl-info span{color:var(--gris);font-size:14px}
-.rest{text-align:right;font-weight:800;color:var(--orange);font-size:18px}
+.cl-info{flex:1;min-width:0}.cl-info b{display:block;font-size:15px}.cl-info span{color:var(--gris);font-size:13px}
+.rest{text-align:right;font-weight:800;color:var(--orange);font-size:15px;line-height:1.25}
 .cl.ok .rest{color:var(--vert)}.cl.late-c .rest{color:var(--rouge)}
-.badge{display:inline-block;background:#fef0cc;color:#b45309;border-radius:20px;padding:4px 10px;font-size:12px;font-weight:700;margin-top:4px}
+.badge{display:inline-block;background:#fef0cc;color:#b45309;border-radius:16px;padding:2px 8px;font-size:11px;font-weight:700}
 .badge.red{background:#fee2e2;color:#b91c1c}.badge.green{background:#d9f5e8;color:#0b7a53}
-.acts{display:flex;gap:8px;justify-content:flex-end;margin-top:10px}
-nav{position:fixed;left:14px;right:14px;bottom:calc(14px + env(safe-area-inset-bottom));max-width:612px;margin:auto;background:rgba(255,255,255,.9);-webkit-backdrop-filter:blur(14px);backdrop-filter:blur(14px);border:1px solid rgba(227,232,242,.9);border-radius:26px;box-shadow:0 12px 32px rgba(20,27,52,.16);display:flex;gap:4px;padding:6px;z-index:6}
-nav button{flex:1;border:0;background:none;padding:9px 4px 8px;border-radius:20px;color:var(--gris);font:700 12px system-ui,sans-serif;display:flex;flex-direction:column;align-items:center;gap:3px;cursor:pointer;transition:background .2s,color .2s}
-nav button svg{width:23px;height:23px}
-nav button.on{background:var(--bleu);color:#fff;box-shadow:0 6px 16px rgba(37,99,235,.35)}
+.acts{display:flex;gap:6px;justify-content:flex-end;margin-top:8px}
+nav{position:fixed;left:14px;right:14px;bottom:calc(10px + env(safe-area-inset-bottom));max-width:612px;margin:auto;background:rgba(255,255,255,.92);-webkit-backdrop-filter:blur(14px);backdrop-filter:blur(14px);border:1px solid rgba(227,232,242,.9);border-radius:22px;box-shadow:0 8px 24px rgba(20,27,52,.15);display:flex;gap:4px;padding:4px;z-index:6}
+nav button{flex:1;border:0;background:none;padding:6px 4px 5px;border-radius:18px;color:var(--gris);font:700 11px system-ui,sans-serif;display:flex;flex-direction:column;align-items:center;gap:2px;cursor:pointer;transition:background .2s,color .2s}
+nav button svg{width:20px;height:20px}
+nav button.on{background:var(--bleu);color:#fff;box-shadow:0 4px 12px rgba(37,99,235,.32)}
 .modal{position:fixed;inset:0;background:rgba(10,15,40,.55);display:none;align-items:flex-end;justify-content:center;z-index:20}
 .modal.show{display:flex}
-.sheet{background:#fff;width:100%;max-width:640px;border-radius:26px 26px 0 0;padding:20px;max-height:90vh;overflow:auto}
-.sheet h3{margin:0 0 10px}
-.row{display:flex;justify-content:space-between;align-items:center;gap:10px;padding:10px 0;border-bottom:1px solid var(--bord);font-size:15px}
-.row small{color:var(--gris);display:block}
+.sheet{background:#fff;width:100%;max-width:640px;border-radius:22px 22px 0 0;padding:16px;max-height:90vh;overflow:auto}
+.sheet h3{margin:0 0 8px;font-size:18px}
+.row{display:flex;justify-content:space-between;align-items:center;gap:10px;padding:8px 0;border-bottom:1px solid var(--bord);font-size:14.5px}
+.row small{color:var(--gris);display:block;font-size:12.5px}
 .row.tap{cursor:pointer}
 .plus{color:var(--orange);font-weight:700}.moins{color:var(--vert);font-weight:700}.late{color:var(--rouge);font-weight:800}
-.alerte{background:#fee2e2;color:#b91c1c;border-radius:14px;padding:10px 12px;font-weight:700;font-size:14px;margin:10px 0}
-.hint{color:var(--gris);font-size:12.5px;margin:12px 0 2px}
-.vide{color:var(--gris);text-align:center;padding:20px}
-.auth{max-width:420px;margin:60px auto;padding:20px}
-.msg{color:var(--rouge);font-size:14px;min-height:20px}
-.mode{background:#fff7e0;color:#92400e;font-size:12px;text-align:center;padding:6px}
+.alerte{background:#fee2e2;color:#b91c1c;border-radius:12px;padding:8px 11px;font-weight:700;font-size:13.5px;margin:8px 0}
+.hint{color:var(--gris);font-size:12px;margin:8px 0 2px}
+.vide{color:var(--gris);text-align:center;padding:14px;font-size:14px}
+.auth{max-width:420px;margin:50px auto;padding:20px}
+.msg{color:var(--rouge);font-size:14px;min-height:20px}.msg.ok{color:var(--vert)}
+.mode{background:#fff7e0;color:#92400e;font-size:11px;text-align:center;padding:4px}
 #toast{position:fixed;top:14px;left:50%;transform:translateX(-50%);background:#141b34;color:#fff;padding:10px 18px;border-radius:20px;font-size:14px;z-index:30;display:none}
 </style>
 </head>
@@ -152,12 +153,22 @@ const dateISO = d => d.getFullYear()+'-'+String(d.getMonth()+1).padStart(2,'0')+
 const aujourdhui = () => dateISO(new Date());
 const joursEntre = (a,b) => Math.round((new Date(b)-new Date(a))/864e5);
 function toast(t){const e=$('#toast');e.textContent=t;e.style.display='block';setTimeout(()=>e.style.display='none',2500);}
+function telecharger(nom,contenu,type){
+  const a=document.createElement('a');
+  a.href=URL.createObjectURL(new Blob([contenu],{type}));
+  a.download=nom; document.body.appendChild(a); a.click(); a.remove();
+  setTimeout(()=>URL.revokeObjectURL(a.href),2000);
+}
 
 /* ============ COUCHE DONNÉES ============
    Mêmes fonctions pour Supabase et pour le mode local. */
 const MODE_LOCAL = !SUPABASE_URL || !SUPABASE_ANON_KEY;
+const RECUP = location.hash.includes('type=recovery');   // arrivée par le lien « mot de passe oublié »
 let sb = null, user = null;
-if(!MODE_LOCAL) sb = supabase.createClient(SUPABASE_URL, SUPABASE_ANON_KEY);
+if(!MODE_LOCAL){
+  sb = supabase.createClient(SUPABASE_URL, SUPABASE_ANON_KEY);
+  sb.auth.onAuthStateChange(evt => { if(evt==='PASSWORD_RECOVERY') ecranNouveauMdp(); });
+}
 const lire = t => JSON.parse(localStorage.getItem('cp_'+t)||'[]');
 const ecrire = (t,l) => localStorage.setItem('cp_'+t,JSON.stringify(l));
 
@@ -223,6 +234,7 @@ const retards = () => S.clients.map(c=>({c,r:enRetard(c.id)})).filter(x=>x.r).so
 /* ============ AUTHENTIFICATION ============ */
 async function demarrer(){
   if(MODE_LOCAL){ await charger(); return; }
+  if(RECUP){ ecranNouveauMdp(); return; }
   const {data} = await sb.auth.getSession();
   user = data.session?.user || null;
   user ? charger() : ecranConnexion();
@@ -235,7 +247,8 @@ function ecranConnexion(msg=''){
     <label>Mot de passe (6 caractères minimum)</label><input id="pw" type="password" autocomplete="current-password">
     <div class="msg" id="am">${esc(msg)}</div>
     <button class="btn" style="width:100%" onclick="connexion()">Se connecter</button>
-    <button class="btn sec" style="width:100%;margin-top:10px" onclick="inscription()">Créer un compte</button></div>`;
+    <button class="btn sec" style="width:100%;margin-top:10px" onclick="inscription()">Créer un compte</button>
+    <p style="text-align:center;margin-top:14px"><a class="link" style="font-size:14px" onclick="mdpOublie()">Mot de passe oublié ?</a></p></div>`;
 }
 async function connexion(){
   const {data,error} = await sb.auth.signInWithPassword({email:$('#em').value.trim(),password:$('#pw').value});
@@ -248,9 +261,75 @@ async function inscription(){
   if(data.session){ user=data.user; charger(); }
   else $('#am').textContent = "Compte créé. Vérifiez votre email puis connectez-vous.";
 }
+async function mdpOublie(){
+  const email=$('#em').value.trim(), m=$('#am');
+  m.classList.remove('ok');
+  if(!email) return m.textContent='Entrez d’abord votre email ci-dessus.';
+  const {error} = await sb.auth.resetPasswordForEmail(email,{redirectTo:location.origin+location.pathname});
+  if(error) return m.textContent=error.message;
+  m.classList.add('ok'); m.textContent='Email envoyé : ouvrez le lien reçu pour choisir un nouveau mot de passe.';
+}
+function ecranNouveauMdp(){
+  $('#app').innerHTML = `<div class="auth">
+    <div class="logo" style="margin-bottom:14px">C</div>
+    <h2>Nouveau mot de passe</h2><p class="sub">Choisissez un nouveau mot de passe.</p>
+    <label>Nouveau mot de passe (6 caractères minimum)</label><input id="np" type="password" autocomplete="new-password">
+    <div class="msg" id="am"></div>
+    <button class="btn" style="width:100%" onclick="saveNouveauMdp()">Enregistrer</button></div>`;
+}
+async function saveNouveauMdp(){
+  const pw=$('#np').value;
+  if(pw.length<6) return $('#am').textContent='6 caractères minimum';
+  const {data,error} = await sb.auth.updateUser({password:pw});
+  if(error) return $('#am').textContent=error.message;
+  history.replaceState(null,'',location.pathname);
+  user=data.user; toast('Mot de passe changé'); charger();
+}
 async function deconnexion(){
+  fermer();
   if(MODE_LOCAL) return toast('Mode local : pas de compte');
   await sb.auth.signOut(); user=null; ecranConnexion();
+}
+
+/* ============ MON ESPACE : sauvegarde et export ============ */
+function ecranEspace(){
+  ouvrir(`<h3>Mon espace</h3>
+    <p class="sub">${MODE_LOCAL?'Mode local : les données restent sur ce téléphone. Faites une sauvegarde de temps en temps.':esc(user?user.email:'')}</p>
+    <div style="display:grid;gap:8px">
+      <button class="btn sec" onclick="exporterJSON()">Télécharger une sauvegarde</button>
+      <button class="btn sec" onclick="exporterCSV()">Exporter les clients (Excel)</button>
+      ${MODE_LOCAL
+        ? `<label class="btn sec" style="text-align:center;margin:0;font-size:15px;color:var(--bleu)">Restaurer une sauvegarde<input type="file" accept=".json,application/json" hidden onchange="importer(this)"></label>`
+        : `<button class="btn red" onclick="deconnexion()">Se déconnecter</button>`}
+      <button class="btn sec" onclick="fermer()">Fermer</button>
+    </div>`);
+}
+function exporterJSON(){
+  telecharger('carnet-pro-sauvegarde-'+aujourdhui()+'.json',
+    JSON.stringify({app:'carnet-pro',version:1,date:new Date().toISOString(),clients:S.clients,credits:S.credits,payments:S.paiements},null,1),
+    'application/json');
+  toast('Sauvegarde téléchargée');
+}
+function exporterCSV(){
+  const lignes=[['Client','Téléphone','Total crédits','Total payé','Reste à payer','Retard']];
+  S.clients.forEach(c=>{const r=enRetard(c.id); lignes.push([c.name,c.phone||'',totalCredits(c.id),totalPaye(c.id),reste(c.id),r?r.montant:0]);});
+  const csv='﻿'+lignes.map(l=>l.map(v=>'"'+String(v).replace(/"/g,'""')+'"').join(';')).join('\r\n');
+  telecharger('carnet-pro-clients-'+aujourdhui()+'.csv',csv,'text/csv;charset=utf-8');
+  toast('Fichier Excel téléchargé');
+}
+function importer(inp){
+  const f=inp.files[0]; if(!f) return;
+  const r=new FileReader();
+  r.onload=()=>{
+    try{
+      const d=JSON.parse(r.result);
+      if(!Array.isArray(d.clients)||!Array.isArray(d.credits)||!Array.isArray(d.payments)) throw new Error('invalide');
+      if(!confirm('Remplacer toutes les données de ce téléphone par cette sauvegarde ?')) return;
+      ecrire('clients',d.clients); ecrire('credits',d.credits); ecrire('payments',d.payments);
+      fermer(); charger(); toast('Sauvegarde restaurée');
+    }catch(e){ toast('Fichier invalide'); }
+  };
+  r.readAsText(f);
 }
 
 /* ============ ICÔNES ET ILLUSTRATION ============ */
@@ -264,24 +343,24 @@ const IC = {
   clock:'<svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 2"/></svg>',
   alert:'<svg viewBox="0 0 24 24"><path d="M12 4 2.8 19.5h18.4z"/><path d="M12 10v4.5M12 17.2v.1"/></svg>'
 };
-const ANIM = `<svg class="anim" viewBox="0 0 390 190" preserveAspectRatio="xMaxYMid slice" aria-hidden="true">
-  <circle class="drift d1" cx="335" cy="30" r="62" fill="#fff" fill-opacity=".09"/>
-  <circle class="drift d2" cx="40" cy="175" r="70" fill="#fff" fill-opacity=".07"/>
-  <circle class="drift d3" cx="215" cy="90" r="26" fill="#fff" fill-opacity=".07"/>
+const ANIM = `<svg class="anim" viewBox="0 0 360 128" preserveAspectRatio="xMaxYMid slice" aria-hidden="true">
+  <circle class="drift d1" cx="310" cy="22" r="50" fill="#fff" fill-opacity=".09"/>
+  <circle class="drift d2" cx="30" cy="120" r="56" fill="#fff" fill-opacity=".07"/>
+  <circle class="drift d3" cx="200" cy="70" r="22" fill="#fff" fill-opacity=".07"/>
   <g class="book">
-    <rect x="262" y="42" width="52" height="66" rx="8" fill="#0f2a6b"/>
-    <rect x="268" y="42" width="46" height="66" rx="7" fill="#fff"/>
-    <path class="ln l1" d="M276 58h28"/><path class="ln l2" d="M276 68h22"/>
-    <path class="ln l3" d="M276 78h26"/><path class="ln l4" d="M276 88h16"/>
+    <rect x="248" y="16" width="44" height="56" rx="7" fill="#0f2a6b"/>
+    <rect x="253" y="16" width="39" height="56" rx="6" fill="#fff"/>
+    <path class="ln l1" d="M260 30h24"/><path class="ln l2" d="M260 39h18"/>
+    <path class="ln l3" d="M260 48h22"/><path class="ln l4" d="M260 57h13"/>
   </g>
-  <g class="coin c1"><circle cx="348" cy="52" r="13" fill="#fbbf24"/><circle cx="348" cy="52" r="8.5" fill="none" stroke="#f59e0b" stroke-width="2.2"/></g>
-  <g class="coin c2"><circle cx="244" cy="114" r="10" fill="#34d399"/><path d="m239.5 114 3.5 3.5 6.5-7" fill="none" stroke="#fff" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/></g>
-  <g class="coin c3"><circle cx="332" cy="120" r="8" fill="#fb923c"/><circle cx="332" cy="120" r="4.5" fill="none" stroke="#fff" stroke-opacity=".7" stroke-width="1.8"/></g>
-  <path class="spark s1" d="M372 96v9M367.5 100.5h9" stroke="#fde68a"/>
-  <path class="spark s2" d="M224 40v8M220 44h8" stroke="#fff"/>
-  <path class="spark s3" d="M300 18v7M296.5 21.5h7" stroke="#fde68a"/>
-  <path class="wv1" d="M0 160 Q49 142 98 160 T196 160 T294 160 T392 160 T490 160 T588 160 T686 160 T784 160 V190 H0Z" fill="#fff" fill-opacity=".14"/>
-  <path class="wv2" d="M0 172 Q49 156 98 172 T196 172 T294 172 T392 172 T490 172 T588 172 T686 172 T784 172 V190 H0Z" fill="#fff" fill-opacity=".1"/>
+  <g class="coin c1"><circle cx="322" cy="38" r="11" fill="#fbbf24"/><circle cx="322" cy="38" r="7" fill="none" stroke="#f59e0b" stroke-width="2"/></g>
+  <g class="coin c2"><circle cx="228" cy="88" r="9" fill="#34d399"/><path d="m224 88 3 3 5-6" fill="none" stroke="#fff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></g>
+  <g class="coin c3"><circle cx="304" cy="92" r="7" fill="#fb923c"/><circle cx="304" cy="92" r="4" fill="none" stroke="#fff" stroke-opacity=".7" stroke-width="1.6"/></g>
+  <path class="spark s1" d="M340 68v8M336 72h8" stroke="#fde68a"/>
+  <path class="spark s2" d="M222 22v7M218.5 25.5h7" stroke="#fff"/>
+  <path class="spark s3" d="M280 10v6M277 13h6" stroke="#fde68a"/>
+  <path class="wv1" d="M0 108 Q49 94 98 108 T196 108 T294 108 T392 108 T490 108 T588 108 T686 108 T784 108 V128 H0Z" fill="#fff" fill-opacity=".14"/>
+  <path class="wv2" d="M0 116 Q49 104 98 116 T196 116 T294 116 T392 116 T490 116 T588 116 T686 116 T784 116 V128 H0Z" fill="#fff" fill-opacity=".1"/>
 </svg>`;
 const salut = () => new Date().getHours()<18 ? 'Bonjour' : 'Bonsoir';
 const dateLongue = () => new Date().toLocaleDateString('fr-FR',{weekday:'long',day:'numeric',month:'long'});
@@ -330,41 +409,41 @@ function afficher(){
         <button onclick="formPaiement()"><span class="ico q3">${IC.addPay}</span>Paiement</button>
       </div>
       <div class="grid">
-        <div class="stat s-blue"><span class="ic">${IC.addCredit}</span><small>Total des crédits</small>
-          <div><div class="n">${fmt(tc)}<em>F</em></div><small>Montant accordé</small></div></div>
-        <div class="stat s-green"><span class="ic">${IC.addPay}</span><small>Total des paiements</small>
-          <div><div class="n">${fmt(tp)}<em>F</em></div><small>Déjà remboursé</small></div></div>
-        <div class="stat s-orange wide"><span class="ic">${IC.clock}</span><small>Reste à encaisser</small>
-          <div><div class="n">${fmt(rs)}<em>FCFA</em></div><small>${taux} % déjà encaissé</small><div class="bar"><i style="width:${taux}%"></i></div></div></div>
+        <div class="stat s-blue"><span class="ic">${IC.addCredit}</span><small>Total crédits</small>
+          <div class="n">${fmt(tc)}<em>F</em></div><small>Montant accordé</small></div>
+        <div class="stat s-green"><span class="ic">${IC.addPay}</span><small>Total paiements</small>
+          <div class="n">${fmt(tp)}<em>F</em></div><small>Déjà remboursé</small></div>
+        <div class="stat s-orange wide"><span class="ic">${IC.clock}</span><small>Reste à encaisser · ${taux} % encaissé</small>
+          <div class="n">${fmt(rs)}<em>FCFA</em></div><div class="bar"><i style="width:${taux}%"></i></div></div>
         <div class="stat s-white tap" onclick="aller('clients')"><span class="ic dark">${IC.clients}</span><small>Clients</small>
-          <div><div class="n">${S.clients.length}</div><small>Voir la liste</small></div></div>
+          <div class="n">${S.clients.length}</div><small>Voir la liste</small></div>
         <div class="stat ${rt.length?'s-red':'s-white'} tap" onclick="ecranRelances()"><span class="ic ${rt.length?'':'dark'}">${IC.alert}</span><small>En retard</small>
-          <div><div class="n">${fmt(montantRetard)}<em>F</em></div><small>${rt.length?rt.length+' client'+(rt.length>1?'s':''):'Aucun retard'}</small></div></div>
+          <div class="n">${fmt(montantRetard)}<em>F</em></div><small>${rt.length?rt.length+' client'+(rt.length>1?'s':''):'Aucun retard'}</small></div>
       </div>
-      ${rt.length?`<div class="box"><div class="box-h"><div><h3>À relancer</h3><p class="sub" style="margin:2px 0 0">Échéance dépassée.</p></div>
+      ${rt.length?`<div class="box"><div class="box-h"><div><h3>À relancer</h3></div>
         <span class="link" onclick="ecranRelances()">Voir tout</span></div>
-        <div style="margin-top:8px">${rt.slice(0,3).map(({c,r})=>`<div class="row"><div><b>${esc(c.name)}</b><small>${r.jours} jour${r.jours>1?'s':''} de retard</small></div>
-          <div style="text-align:right"><span class="late">${fmt(r.montant)} F</span><br><button class="btn sec small" style="margin-top:6px" onclick="relancer('${c.id}')">Relancer</button></div></div>`).join('')}</div></div>`:''}
-      <div class="box"><div class="box-h"><div><h3>Mes clients</h3><p class="sub" style="margin:2px 0 0">Suivez les crédits de vos clients.</p></div>
+        <div style="margin-top:4px">${rt.slice(0,3).map(({c,r})=>`<div class="row"><div><b>${esc(c.name)}</b><small>${r.jours} jour${r.jours>1?'s':''} de retard</small></div>
+          <div style="display:flex;align-items:center;gap:8px"><span class="late">${fmt(r.montant)} F</span><button class="btn sec small" onclick="relancer('${c.id}')">Relancer</button></div></div>`).join('')}</div></div>`:''}
+      <div class="box"><div class="box-h"><div><h3>Mes clients</h3></div>
       <span class="link" onclick="aller('clients')">Voir tout</span></div>
-      <div style="margin-top:12px">${S.clients.slice(0,5).map(ligneClient).join('')||'<div class="vide">Aucun client pour l’instant.</div>'}</div></div>`;
+      <div style="margin-top:6px">${S.clients.slice(0,5).map(ligneClient).join('')||'<div class="vide">Aucun client pour l’instant.</div>'}</div></div>`;
   } else if(p==='clients'){
     const q = S.recherche.toLowerCase();
     const liste = S.clients.filter(c=>c.name.toLowerCase().includes(q)||(c.phone||'').includes(q));
     contenu = `<div class="kicker">CLIENTS</div><h2>Mes clients</h2>
       <button class="btn" onclick="formClient()">+ Nouveau client</button>
-      <input id="rech" placeholder="Rechercher un client..." value="${esc(S.recherche)}" oninput="chercher(this.value)" style="margin-top:14px">
+      <input id="rech" placeholder="Rechercher un client..." value="${esc(S.recherche)}" oninput="chercher(this.value)" style="margin-top:10px">
       <div id="liste">${liste.map(ligneClient).join('')||'<div class="vide">Aucun client trouvé.</div>'}</div>`;
   } else {
     const noms = Object.fromEntries(S.clients.map(c=>[c.id,c.name]));
     contenu = `<div class="kicker">CRÉDITS</div><h2>Historique</h2>
       <button class="btn" onclick="formCredit()">+ Nouveau crédit</button>
       <p class="hint">Touchez une ligne pour la modifier ou la supprimer.</p>
-      <div class="box" style="margin-top:8px">${mouvements().map(m=>ligneMouv(m,noms[m.client_id]||'Client supprimé')).join('')||'<div class="vide">Aucun mouvement.</div>'}</div>`;
+      <div class="box" style="margin-top:6px">${mouvements().map(m=>ligneMouv(m,noms[m.client_id]||'Client supprimé')).join('')||'<div class="vide">Aucun mouvement.</div>'}</div>`;
   }
   $('#app').innerHTML = `${MODE_LOCAL?'<div class="mode">Mode local : données enregistrées sur ce téléphone seulement</div>':''}
     <header><div class="logo">C</div><div><h1>Carnet Pro</h1><p>Gestion des crédits clients</p></div>
-    <button class="espace" onclick="deconnexion()"><i></i>Mon espace</button></header>
+    <button class="espace" onclick="ecranEspace()"><i></i>Mon espace</button></header>
     <main>${contenu}</main>
     <nav>${[['accueil','Accueil'],['clients','Clients'],['credits','Crédits']].map(([k,l])=>`<button class="${p===k?'on':''}" onclick="aller('${k}')">${IC[k]}<span>${l}</span></button>`).join('')}</nav>`;
 }
@@ -403,13 +482,13 @@ function detailClient(id){
     <div class="row"><span>Total crédits</span><b>${fmt(totalCredits(id))} F</b></div>
     <div class="row"><span>Total payé</span><b>${fmt(totalPaye(id))} F</b></div>
     <div class="row"><span>Reste à payer</span><b class="plus">${fmt(reste(id))} F</b></div>
-    <div style="display:flex;gap:8px;margin:14px 0;flex-wrap:wrap">
+    <div style="display:flex;gap:8px;margin:12px 0;flex-wrap:wrap">
       <button class="btn sec small" onclick="formCredit('${id}')">+ Crédit</button>
       <button class="btn sec small" onclick="formPaiement('${id}')">+ Paiement</button>
       ${r?`<button class="btn red small" onclick="relancer('${id}')">Relancer</button>`:`<button class="btn sec small" onclick="whatsapp('${id}')">WhatsApp</button>`}</div>
     <p class="hint">Touchez une ligne pour la modifier ou la supprimer.</p>
     ${mouvements(id).map(m=>ligneMouv(m)).join('')||'<div class="vide">Aucun mouvement.</div>'}
-    <button class="btn red small" style="margin-top:16px" onclick="supprClient('${id}')">Supprimer ce client</button>`);
+    <button class="btn red small" style="margin-top:14px" onclick="supprClient('${id}')">Supprimer ce client</button>`);
 }
 async function supprClient(id){
   if(!confirm('Supprimer ce client et tout son historique ?')) return;
@@ -467,8 +546,8 @@ function ecranRecu(p){
     <div class="row"><span>${esc(c?c.name:'')}</span><b class="moins">${fmt(p.amount)} F</b></div>
     <div class="row"><span>Moyen</span><b>${esc(p.method||'Espèces')}</b></div>
     <div class="row"><span>Reste à payer</span><b class="plus">${fmt(resteAu(p))} F</b></div>
-    <button class="btn" style="width:100%;margin-top:14px" onclick="envoyerRecu('${p.id}')">Envoyer le reçu par WhatsApp</button>
-    <button class="btn sec" style="width:100%;margin-top:10px" onclick="fermer()">Fermer</button>`);
+    <button class="btn" style="width:100%;margin-top:12px" onclick="envoyerRecu('${p.id}')">Envoyer le reçu par WhatsApp</button>
+    <button class="btn sec" style="width:100%;margin-top:8px" onclick="fermer()">Fermer</button>`);
 }
 /* Reste à payer au moment d'un paiement donné (un ancien reçu reste exact) */
 function resteAu(p){
@@ -489,7 +568,7 @@ function ouvrirOp(type,id){
     <div class="row"><span>Date</span><b>${datefr(m.created_at)}</b></div>
     ${credit?`<div class="row"><span>Échéance</span><b>${m.due_date?dateSimple(m.due_date):'—'}</b></div>${m.note?`<div class="row"><span>Note</span><b>${esc(m.note)}</b></div>`:''}`
             :`<div class="row"><span>Moyen</span><b>${esc(m.method||'Espèces')}</b></div>`}
-    <div style="display:grid;gap:10px;margin-top:14px">
+    <div style="display:grid;gap:8px;margin-top:12px">
       ${credit?'':`<button class="btn" onclick="envoyerRecu('${m.id}')">Envoyer le reçu par WhatsApp</button>`}
       <button class="btn sec" onclick="formEdit('${type}','${m.id}')">Modifier</button>
       <button class="btn red" onclick="supprOp('${type}','${m.id}')">Supprimer</button>
@@ -531,10 +610,10 @@ function ecranRelances(){
   const l=retards();
   ouvrir(`<h3>Clients à relancer</h3>
     ${l.length?l.map(({c,r})=>`<div class="row"><div><b>${esc(c.name)}</b><small>${r.jours} jour${r.jours>1?'s':''} de retard · depuis le ${dateSimple(r.depuis)}</small></div>
-      <div style="text-align:right"><div class="late">${fmt(r.montant)} F</div><button class="btn sec small" style="margin-top:6px" onclick="relancer('${c.id}')">Relancer</button></div></div>`).join('')
+      <div style="text-align:right"><div class="late">${fmt(r.montant)} F</div><button class="btn sec small" style="margin-top:4px" onclick="relancer('${c.id}')">Relancer</button></div></div>`).join('')
       +'<p class="hint">WhatsApp demande un appui par message : touchez « Relancer » pour chaque client.</p>'
      :'<div class="vide">Aucun client en retard. 🎉</div>'}
-    <button class="btn sec" style="width:100%;margin-top:14px" onclick="fermer()">Fermer</button>`);
+    <button class="btn sec" style="width:100%;margin-top:12px" onclick="fermer()">Fermer</button>`);
 }
 
 /* ============ WHATSAPP ============ */
