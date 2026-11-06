@@ -9,24 +9,26 @@
 :root{--bleu:#2563eb;--vert:#0f9d6b;--orange:#ea6a0c;--rouge:#dc2626;--fond:#f5f7fb;--texte:#141b34;--gris:#6b7794;--bord:#e3e8f2}
 *{box-sizing:border-box;-webkit-tap-highlight-color:transparent}
 body{margin:0;font-family:system-ui,-apple-system,Roboto,sans-serif;background:var(--fond);color:var(--texte);padding-bottom:120px}
+main{padding:16px;max-width:640px;margin:auto}
+
+/* ---------- En-tête ---------- */
 header{background:rgba(245,247,251,.85);-webkit-backdrop-filter:blur(14px);backdrop-filter:blur(14px);padding:14px 16px;display:flex;align-items:center;gap:12px;position:sticky;top:0;z-index:5}
 .logo{width:44px;height:44px;border-radius:15px;background:linear-gradient(135deg,#3b82f6,#1d4ed8);color:#fff;font-weight:800;font-size:21px;display:grid;place-items:center;box-shadow:0 8px 18px rgba(37,99,235,.35)}
 header h1{margin:0;font-size:19px;letter-spacing:-.3px}header p{margin:1px 0 0;color:var(--gris);font-size:12.5px}
 .espace{margin-left:auto;display:flex;align-items:center;gap:7px;background:#fff;border:1px solid var(--bord);border-radius:20px;padding:8px 13px;color:var(--texte);font:700 13px system-ui,sans-serif;cursor:pointer;box-shadow:0 2px 8px rgba(20,27,52,.06)}
 .espace i{width:8px;height:8px;border-radius:50%;background:var(--vert);box-shadow:0 0 0 4px rgba(15,157,107,.18)}
 nav svg,.ico svg{fill:none;stroke:currentColor;stroke-width:1.9;stroke-linecap:round;stroke-linejoin:round}
+
+/* ---------- Bannière animée ---------- */
 .banner{position:relative;overflow:hidden;margin:-16px -16px 18px;padding:24px 20px 56px;min-height:205px;background:linear-gradient(135deg,#1e40af 0%,#2563eb 55%,#3b82f6 100%);border-radius:0 0 32px 32px;color:#fff;box-shadow:0 14px 30px rgba(37,99,235,.25)}
 .banner .txt{position:relative;z-index:2;max-width:58%}
 .banner .sub{color:rgba(255,255,255,.88);margin:0}
 .anim{position:absolute;inset:0;width:100%;height:100%}
+.anim *{transform-box:fill-box;transform-origin:center}
 .anim .drift{animation:drift 7s ease-in-out infinite}
 .anim .d2{animation-delay:-3s}.anim .d3{animation-delay:-5s;animation-duration:9s}
 .anim .wv1{animation:slide 9s linear infinite}
 .anim .wv2{animation:slide 14s linear infinite reverse}
-@keyframes drift{0%,100%{transform:translate(0,0)}50%{transform:translate(10px,-8px)}}
-@keyframes slide{from{transform:translateX(0)}to{transform:translateX(-196px)}}
-.anim *{transform-box:fill-box;transform-origin:center}
-.anim .blob{animation:pulse 4s ease-in-out infinite}
 .anim .book{transform-origin:50% 100%;animation:sway 5s ease-in-out infinite}
 .anim .ln{fill:none;stroke:#b9c8ee;stroke-width:3.5;stroke-linecap:round;stroke-dasharray:30;animation:write 5s ease-in-out infinite}
 .anim .l2{animation-delay:.5s}.anim .l3{animation-delay:1s}.anim .l4{animation-delay:1.5s}
@@ -35,7 +37,8 @@ nav svg,.ico svg{fill:none;stroke:currentColor;stroke-width:1.9;stroke-linecap:r
 .anim .spark{fill:none;stroke-width:2.2;stroke-linecap:round;animation:twinkle 2.4s ease-in-out infinite}
 .anim .s2{animation-delay:-1.2s}
 .wave{display:inline-block;transform-origin:70% 70%;animation:wave 2.6s ease-in-out infinite}
-@keyframes pulse{0%,100%{transform:scale(1)}50%{transform:scale(1.06)}}
+@keyframes drift{0%,100%{transform:translate(0,0)}50%{transform:translate(10px,-8px)}}
+@keyframes slide{from{transform:translateX(0)}to{transform:translateX(-196px)}}
 @keyframes sway{0%,100%{transform:rotate(-3deg)}50%{transform:rotate(3deg)}}
 @keyframes write{0%{stroke-dashoffset:30}20%,80%{stroke-dashoffset:0}95%,100%{stroke-dashoffset:30}}
 @keyframes floaty{0%,100%{transform:translateY(0)}50%{transform:translateY(-8px)}}
@@ -45,35 +48,62 @@ nav svg,.ico svg{fill:none;stroke:currentColor;stroke-width:1.9;stroke-linecap:r
 .date{display:inline-block;background:rgba(255,255,255,.18);color:#fff;font-weight:700;font-size:12px;padding:5px 11px;border-radius:20px}
 .date::first-letter{text-transform:uppercase}
 .banner h2{font-size:32px;letter-spacing:-.8px;margin:12px 0 4px;color:#fff}
+
+/* ---------- Raccourcis ---------- */
 .quick{display:grid;grid-template-columns:repeat(3,1fr);gap:10px;margin-bottom:6px}
 .quick button{background:#fff;border:1px solid var(--bord);border-radius:20px;padding:14px 6px 12px;display:flex;flex-direction:column;align-items:center;gap:8px;font:700 13px system-ui,sans-serif;color:var(--texte);cursor:pointer;box-shadow:0 4px 14px rgba(20,27,52,.05)}
 .quick .ico{width:44px;height:44px;border-radius:15px;display:grid;place-items:center}
 .quick .ico svg{width:22px;height:22px}
 .q1{background:#e8efff;color:var(--bleu)}.q2{background:#fff1e3;color:var(--orange)}.q3{background:#e2f7ee;color:var(--vert)}
-main{padding:16px;max-width:640px;margin:auto}
+
+/* ---------- Tableau de bord en grille ---------- */
+.grid{display:grid;grid-template-columns:1fr 1fr;gap:12px;margin:14px 0}
+.stat{position:relative;overflow:hidden;border-radius:22px;padding:16px;color:#fff;min-height:128px;display:flex;flex-direction:column;justify-content:space-between;cursor:default}
+.stat small{opacity:.92;font-size:13px;font-weight:600;display:block}
+.stat>small{padding-right:42px}
+.stat .n{font-size:28px;font-weight:800;letter-spacing:-.6px;margin:8px 0 2px;line-height:1.1}
+.stat .n em{font-style:normal;font-size:14px;font-weight:700;opacity:.85;margin-left:4px}
+.stat .ic{position:absolute;right:12px;top:12px;width:34px;height:34px;border-radius:12px;background:rgba(255,255,255,.22);display:grid;place-items:center}
+.stat .ic svg{width:18px;height:18px;fill:none;stroke:#fff;stroke-width:2;stroke-linecap:round;stroke-linejoin:round}
+.stat .ic.dark{background:#eaf0ff}.stat .ic.dark svg{stroke:var(--bleu)}
+.stat.tap{cursor:pointer}
+.wide{grid-column:span 2}
+.bar{height:8px;border-radius:8px;background:rgba(255,255,255,.3);overflow:hidden;margin-top:10px}
+.bar i{display:block;height:100%;background:#fff;border-radius:8px;transition:width .6s}
+.s-blue{background:linear-gradient(135deg,#2563eb,#1e40af)}
+.s-green{background:linear-gradient(135deg,#10b981,#047857)}
+.s-orange{background:linear-gradient(135deg,#f59e0b,#ea580c)}
+.s-red{background:linear-gradient(135deg,#ef4444,#b91c1c)}
+.s-white{background:#fff;color:var(--texte);border:1px solid var(--bord)}
+.s-white small{color:var(--gris);opacity:1}
+
+/* ---------- Divers ---------- */
 .kicker{color:var(--bleu);font-weight:800;letter-spacing:.12em;font-size:13px;margin:8px 0}
 h2{margin:4px 0;font-size:30px}
 .sub{color:var(--gris);margin:0 0 14px}
 .btn{border:0;border-radius:14px;padding:13px 18px;font-weight:700;font-size:16px;background:var(--bleu);color:#fff;cursor:pointer}
 .btn.sec{background:#eaf0ff;color:var(--bleu)}.btn.red{background:#fee2e2;color:var(--rouge)}
 .btn.small{padding:8px 12px;font-size:14px;border-radius:12px}
-.card{border-radius:24px;padding:22px;color:#fff;margin:14px 0}
-.card small{opacity:.9;font-size:15px}.card .n{font-size:38px;font-weight:800;margin:10px 0}
-.c1{background:linear-gradient(135deg,#2563eb,#1e40af)}.c2{background:linear-gradient(135deg,#10b981,#047857)}.c3{background:linear-gradient(135deg,#f59e0b,#ea580c)}
 .box{background:#fff;border:1px solid var(--bord);border-radius:22px;padding:16px;margin:14px 0}
-.box-h{display:flex;justify-content:space-between;align-items:center}
+.box-h{display:flex;justify-content:space-between;align-items:center;gap:10px}
 .box h3{margin:0;font-size:22px}
-.link{color:var(--bleu);font-weight:800;cursor:pointer;font-size:17px}
+.link{color:var(--bleu);font-weight:800;cursor:pointer;font-size:17px;white-space:nowrap}
 input,select,textarea{width:100%;padding:13px;border:1px solid var(--bord);border-radius:14px;font-size:16px;background:#f8f9fd;margin:6px 0 10px;font-family:inherit}
 label{font-size:13px;font-weight:700;color:var(--gris)}
+.chips{display:flex;gap:8px;margin:-2px 0 12px;flex-wrap:wrap}
+.chips button{border:1px solid var(--bord);background:#fff;border-radius:20px;padding:7px 12px;font-weight:700;font-size:13px;color:var(--bleu);cursor:pointer}
 .cl{border:1px solid var(--bord);border-left:5px solid var(--bleu);border-radius:18px;padding:14px;margin:10px 0;background:#fff}
 .cl.ok{border-left-color:var(--vert)}
+.cl.late-c{border-left-color:var(--rouge)}
 .cl-top{display:flex;gap:12px;align-items:center;cursor:pointer}
 .av{width:48px;height:48px;border-radius:50%;background:linear-gradient(135deg,#2563eb,#1e40af);color:#fff;font-weight:800;display:grid;place-items:center;flex:none}
 .cl.ok .av{background:linear-gradient(135deg,#10b981,#047857)}
+.cl.late-c .av{background:linear-gradient(135deg,#ef4444,#b91c1c)}
 .cl-info{flex:1;min-width:0}.cl-info b{display:block}.cl-info span{color:var(--gris);font-size:14px}
 .rest{text-align:right;font-weight:800;color:var(--orange);font-size:18px}
+.cl.ok .rest{color:var(--vert)}.cl.late-c .rest{color:var(--rouge)}
 .badge{display:inline-block;background:#fef0cc;color:#b45309;border-radius:20px;padding:4px 10px;font-size:12px;font-weight:700;margin-top:4px}
+.badge.red{background:#fee2e2;color:#b91c1c}.badge.green{background:#d9f5e8;color:#0b7a53}
 .acts{display:flex;gap:8px;justify-content:flex-end;margin-top:10px}
 nav{position:fixed;left:14px;right:14px;bottom:calc(14px + env(safe-area-inset-bottom));max-width:612px;margin:auto;background:rgba(255,255,255,.9);-webkit-backdrop-filter:blur(14px);backdrop-filter:blur(14px);border:1px solid rgba(227,232,242,.9);border-radius:26px;box-shadow:0 12px 32px rgba(20,27,52,.16);display:flex;gap:4px;padding:6px;z-index:6}
 nav button{flex:1;border:0;background:none;padding:9px 4px 8px;border-radius:20px;color:var(--gris);font:700 12px system-ui,sans-serif;display:flex;flex-direction:column;align-items:center;gap:3px;cursor:pointer;transition:background .2s,color .2s}
@@ -83,9 +113,12 @@ nav button.on{background:var(--bleu);color:#fff;box-shadow:0 6px 16px rgba(37,99
 .modal.show{display:flex}
 .sheet{background:#fff;width:100%;max-width:640px;border-radius:26px 26px 0 0;padding:20px;max-height:90vh;overflow:auto}
 .sheet h3{margin:0 0 10px}
-.row{display:flex;justify-content:space-between;padding:9px 0;border-bottom:1px solid var(--bord);font-size:15px}
+.row{display:flex;justify-content:space-between;align-items:center;gap:10px;padding:10px 0;border-bottom:1px solid var(--bord);font-size:15px}
 .row small{color:var(--gris);display:block}
-.plus{color:var(--orange);font-weight:700}.moins{color:var(--vert);font-weight:700}
+.row.tap{cursor:pointer}
+.plus{color:var(--orange);font-weight:700}.moins{color:var(--vert);font-weight:700}.late{color:var(--rouge);font-weight:800}
+.alerte{background:#fee2e2;color:#b91c1c;border-radius:14px;padding:10px 12px;font-weight:700;font-size:14px;margin:10px 0}
+.hint{color:var(--gris);font-size:12.5px;margin:12px 0 2px}
 .vide{color:var(--gris);text-align:center;padding:20px}
 .auth{max-width:420px;margin:60px auto;padding:20px}
 .msg{color:var(--rouge);font-size:14px;min-height:20px}
@@ -110,44 +143,52 @@ const SUPABASE_ANON_KEY = "";
 <script>
 /* ============ OUTILS ============ */
 const $ = s => document.querySelector(s);
-const fmt = n => new Intl.NumberFormat('fr-FR').format(Math.round(n||0)).replace(/[\u202f\u00a0]/g,' ');
+const fmt = n => new Intl.NumberFormat('fr-FR').format(Math.round(n||0)).replace(/[  ]/g,' ');
 const esc = s => String(s??'').replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
 const initiales = n => n.trim().split(/\s+/).slice(0,2).map(w=>w[0]||'').join('').toUpperCase();
 const datefr = d => new Date(d).toLocaleDateString('fr-FR');
+const dateSimple = d => String(d).slice(0,10).split('-').reverse().join('/');   // 2026-11-05 -> 05/11/2026
+const dateISO = d => d.getFullYear()+'-'+String(d.getMonth()+1).padStart(2,'0')+'-'+String(d.getDate()).padStart(2,'0');
+const aujourdhui = () => dateISO(new Date());
+const joursEntre = (a,b) => Math.round((new Date(b)-new Date(a))/864e5);
 function toast(t){const e=$('#toast');e.textContent=t;e.style.display='block';setTimeout(()=>e.style.display='none',2500);}
 
 /* ============ COUCHE DONNÉES ============
-   Deux modes avec les mêmes fonctions : Supabase ou localStorage. */
+   Mêmes fonctions pour Supabase et pour le mode local. */
 const MODE_LOCAL = !SUPABASE_URL || !SUPABASE_ANON_KEY;
 let sb = null, user = null;
 if(!MODE_LOCAL) sb = supabase.createClient(SUPABASE_URL, SUPABASE_ANON_KEY);
+const lire = t => JSON.parse(localStorage.getItem('cp_'+t)||'[]');
+const ecrire = (t,l) => localStorage.setItem('cp_'+t,JSON.stringify(l));
 
 const DB = {
   async liste(table){
-    if(MODE_LOCAL) return JSON.parse(localStorage.getItem('cp_'+table)||'[]');
+    if(MODE_LOCAL) return lire(table);
     const {data,error} = await sb.from(table).select('*').order('created_at',{ascending:false});
     if(error) throw error; return data;
   },
   async ajouter(table,ligne){
     if(MODE_LOCAL){
-      const l = JSON.parse(localStorage.getItem('cp_'+table)||'[]');
+      const l = lire(table);
       const nv = {id:crypto.randomUUID(),created_at:new Date().toISOString(),...ligne};
-      l.unshift(nv); localStorage.setItem('cp_'+table,JSON.stringify(l)); return nv;
+      l.unshift(nv); ecrire(table,l); return nv;
     }
     const {data,error} = await sb.from(table).insert(ligne).select().single();
     if(error) throw error; return data;
   },
+  async modifier(table,id,patch){
+    if(MODE_LOCAL){ ecrire(table,lire(table).map(x=>x.id===id?{...x,...patch}:x)); return; }
+    const {error} = await sb.from(table).update(patch).eq('id',id);
+    if(error) throw error;
+  },
   async supprimer(table,id){
-    if(MODE_LOCAL){
-      const l = JSON.parse(localStorage.getItem('cp_'+table)||'[]').filter(x=>x.id!==id);
-      localStorage.setItem('cp_'+table,JSON.stringify(l)); return;
-    }
+    if(MODE_LOCAL){ ecrire(table,lire(table).filter(x=>x.id!==id)); return; }
     const {error} = await sb.from(table).delete().eq('id',id);
     if(error) throw error;
   }
 };
 
-/* ============ ÉTAT ============ */
+/* ============ ÉTAT ET CALCULS ============ */
 let S = {clients:[],credits:[],paiements:[],page:'accueil',recherche:''};
 
 async function charger(){
@@ -160,6 +201,24 @@ async function charger(){
 const totalCredits = id => S.credits.filter(x=>!id||x.client_id===id).reduce((a,x)=>a+Number(x.amount),0);
 const totalPaye = id => S.paiements.filter(x=>!id||x.client_id===id).reduce((a,x)=>a+Number(x.amount),0);
 const reste = id => totalCredits(id)-totalPaye(id);
+
+/* Retard d'un client : les paiements remboursent d'abord les plus anciens crédits (méthode FIFO).
+   Ce qui reste dû sur un crédit dont l'échéance est passée = montant en retard. */
+function enRetard(cid){
+  const t = aujourdhui();
+  let paye = totalPaye(cid), du = 0, depuis = null;
+  const cr = S.credits.filter(x=>x.client_id===cid).sort((a,b)=>new Date(a.created_at)-new Date(b.created_at));
+  for(const c of cr){
+    const part = Math.min(paye, Number(c.amount)); paye -= part;
+    const encore = Number(c.amount)-part;
+    if(encore>0 && c.due_date && c.due_date<t){
+      du += encore;
+      if(!depuis || c.due_date<depuis) depuis = c.due_date;
+    }
+  }
+  return du>0 ? {montant:du, depuis, jours:joursEntre(depuis,t)} : null;
+}
+const retards = () => S.clients.map(c=>({c,r:enRetard(c.id)})).filter(x=>x.r).sort((a,b)=>b.r.jours-a.r.jours);
 
 /* ============ AUTHENTIFICATION ============ */
 async function demarrer(){
@@ -194,30 +253,17 @@ async function deconnexion(){
   await sb.auth.signOut(); user=null; ecranConnexion();
 }
 
-/* ============ AFFICHAGE ============ */
-function ligneClient(c){
-  const r = reste(c.id), ok = r<=0;
-  return `<div class="cl ${ok?'ok':''}">
-    <div class="cl-top" onclick="detailClient('${c.id}')">
-      <div class="av">${esc(initiales(c.name))}</div>
-      <div class="cl-info"><b>${esc(c.name)}</b><span>${esc(c.phone||'')}</span></div>
-      <div class="rest">${fmt(r)} F<br><span class="badge">${ok?'Soldé':'À rembourser'}</span></div>
-    </div>
-    <div class="acts">
-      ${ok?'':`<button class="btn sec small" onclick="formPaiement('${c.id}')">+ Paiement</button>`}
-      <button class="btn sec small" onclick="whatsapp('${c.id}')">WhatsApp</button>
-    </div></div>`;
-}
-/* Icônes (SVG en ligne : pas de fichier externe à charger) */
+/* ============ ICÔNES ET ILLUSTRATION ============ */
 const IC = {
   accueil:'<svg viewBox="0 0 24 24"><path d="M3 11.5 12 4l9 7.5"/><path d="M5 10v9a1 1 0 0 0 1 1h4v-6h4v6h4a1 1 0 0 0 1-1v-9"/></svg>',
   clients:'<svg viewBox="0 0 24 24"><circle cx="9" cy="8" r="3.5"/><path d="M2.5 20c.6-3.6 3.2-5.5 6.5-5.5s5.9 1.9 6.5 5.5"/><path d="M16 4.7a3.5 3.5 0 0 1 0 6.6M18.5 14.8c1.7.7 2.7 2.4 3 5.2"/></svg>',
   credits:'<svg viewBox="0 0 24 24"><rect x="3" y="5" width="18" height="14" rx="3"/><path d="M3 10h18M7 15h4"/></svg>',
   addClient:'<svg viewBox="0 0 24 24"><circle cx="10" cy="8" r="3.5"/><path d="M3.5 20c.6-3.6 3.2-5.5 6.5-5.5"/><path d="M18 8v6M15 11h6"/></svg>',
   addCredit:'<svg viewBox="0 0 24 24"><path d="M7 17 17 7M9 7h8v8"/></svg>',
-  addPay:'<svg viewBox="0 0 24 24"><path d="m5 12.5 4.5 4.5L19 7.5"/></svg>'
+  addPay:'<svg viewBox="0 0 24 24"><path d="m5 12.5 4.5 4.5L19 7.5"/></svg>',
+  clock:'<svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 2"/></svg>',
+  alert:'<svg viewBox="0 0 24 24"><path d="M12 4 2.8 19.5h18.4z"/><path d="M12 10v4.5M12 17.2v.1"/></svg>'
 };
-/* Illustration animée de l'accueil : SVG + animations CSS (aucune image à télécharger) */
 const ANIM = `<svg class="anim" viewBox="0 0 390 190" preserveAspectRatio="xMaxYMid slice" aria-hidden="true">
   <circle class="drift d1" cx="335" cy="30" r="62" fill="#fff" fill-opacity=".09"/>
   <circle class="drift d2" cx="40" cy="175" r="70" fill="#fff" fill-opacity=".07"/>
@@ -240,19 +286,65 @@ const ANIM = `<svg class="anim" viewBox="0 0 390 190" preserveAspectRatio="xMaxY
 const salut = () => new Date().getHours()<18 ? 'Bonjour' : 'Bonsoir';
 const dateLongue = () => new Date().toLocaleDateString('fr-FR',{weekday:'long',day:'numeric',month:'long'});
 
+/* ============ AFFICHAGE ============ */
+function ligneClient(c){
+  const r = reste(c.id), ok = r<=0, ret = enRetard(c.id);
+  const etat = ok ? ['Soldé','green'] : ret ? ['En retard','red'] : ['À rembourser',''];
+  return `<div class="cl ${ok?'ok':''} ${ret?'late-c':''}">
+    <div class="cl-top" onclick="detailClient('${c.id}')">
+      <div class="av">${esc(initiales(c.name))}</div>
+      <div class="cl-info"><b>${esc(c.name)}</b><span>${esc(c.phone||'')}</span></div>
+      <div class="rest">${fmt(Math.max(r,0))} F<br><span class="badge ${etat[1]}">${etat[0]}</span></div>
+    </div>
+    <div class="acts">
+      ${ok?'':`<button class="btn sec small" onclick="formPaiement('${c.id}')">+ Paiement</button>`}
+      ${ret?`<button class="btn red small" onclick="relancer('${c.id}')">Relancer</button>`
+           :`<button class="btn sec small" onclick="whatsapp('${c.id}')">WhatsApp</button>`}
+    </div></div>`;
+}
+/* Une ligne d'historique (crédit ou paiement). Touchez-la pour modifier ou supprimer. */
+function ligneMouv(m,nom){
+  const credit = m.t==='credit';
+  const lib = credit ? esc(m.note||'Crédit') : 'Paiement · '+esc(m.method||'Espèces');
+  const ech = credit && m.due_date ? ` · échéance ${dateSimple(m.due_date)}` : '';
+  const haut = nom ? `<b>${esc(nom)}</b>` : lib;
+  const bas = nom ? `${datefr(m.created_at)} · ${lib}${ech}` : `${datefr(m.created_at)}${ech}`;
+  return `<div class="row tap" onclick="ouvrirOp('${m.t}','${m.id}')"><div>${haut}<small>${bas}</small></div>
+    <span class="${credit?'plus':'moins'}">${credit?'+':'−'}${fmt(m.amount)} F</span></div>`;
+}
+const mouvements = id => [
+  ...S.credits.filter(x=>!id||x.client_id===id).map(x=>({...x,t:'credit'})),
+  ...S.paiements.filter(x=>!id||x.client_id===id).map(x=>({...x,t:'paiement'}))
+].sort((a,b)=>new Date(b.created_at)-new Date(a.created_at));
+
 function afficher(){
   const p = S.page;
   let contenu = '';
   if(p==='accueil'){
+    const tc=totalCredits(), tp=totalPaye(), rs=reste(), taux = tc>0 ? Math.min(100,Math.round(tp/tc*100)) : 0;
+    const rt = retards(), montantRetard = rt.reduce((a,x)=>a+x.r.montant,0);
     contenu = `<div class="banner">${ANIM}<div class="txt"><span class="date">${dateLongue()}</span><h2>${salut()} <span class="wave">👋</span></h2><p class="sub">Voici la situation de vos crédits.</p></div></div>
       <div class="quick">
         <button onclick="formClient()"><span class="ico q1">${IC.addClient}</span>Client</button>
         <button onclick="formCredit()"><span class="ico q2">${IC.addCredit}</span>Crédit</button>
         <button onclick="formPaiement()"><span class="ico q3">${IC.addPay}</span>Paiement</button>
       </div>
-      <div class="card c1"><small>Total des crédits</small><div class="n">${fmt(totalCredits())}</div><small>Montant total accordé</small></div>
-      <div class="card c2"><small>Total des paiements</small><div class="n">${fmt(totalPaye())}</div><small>Montant déjà remboursé</small></div>
-      <div class="card c3"><small>Reste à encaisser</small><div class="n">${fmt(reste())} FCFA</div><small>Crédits non remboursés</small></div>
+      <div class="grid">
+        <div class="stat s-blue"><span class="ic">${IC.addCredit}</span><small>Total des crédits</small>
+          <div><div class="n">${fmt(tc)}<em>F</em></div><small>Montant accordé</small></div></div>
+        <div class="stat s-green"><span class="ic">${IC.addPay}</span><small>Total des paiements</small>
+          <div><div class="n">${fmt(tp)}<em>F</em></div><small>Déjà remboursé</small></div></div>
+        <div class="stat s-orange wide"><span class="ic">${IC.clock}</span><small>Reste à encaisser</small>
+          <div><div class="n">${fmt(rs)}<em>FCFA</em></div><small>${taux} % déjà encaissé</small><div class="bar"><i style="width:${taux}%"></i></div></div></div>
+        <div class="stat s-white tap" onclick="aller('clients')"><span class="ic dark">${IC.clients}</span><small>Clients</small>
+          <div><div class="n">${S.clients.length}</div><small>Voir la liste</small></div></div>
+        <div class="stat ${rt.length?'s-red':'s-white'} tap" onclick="ecranRelances()"><span class="ic ${rt.length?'':'dark'}">${IC.alert}</span><small>En retard</small>
+          <div><div class="n">${fmt(montantRetard)}<em>F</em></div><small>${rt.length?rt.length+' client'+(rt.length>1?'s':''):'Aucun retard'}</small></div></div>
+      </div>
+      ${rt.length?`<div class="box"><div class="box-h"><div><h3>À relancer</h3><p class="sub" style="margin:2px 0 0">Échéance dépassée.</p></div>
+        <span class="link" onclick="ecranRelances()">Voir tout</span></div>
+        <div style="margin-top:8px">${rt.slice(0,3).map(({c,r})=>`<div class="row"><div><b>${esc(c.name)}</b><small>${r.jours} jour${r.jours>1?'s':''} de retard</small></div>
+          <div style="text-align:right"><span class="late">${fmt(r.montant)} F</span><br><button class="btn sec small" style="margin-top:6px" onclick="relancer('${c.id}')">Relancer</button></div></div>`).join('')}</div></div>`:''}
       <div class="box"><div class="box-h"><div><h3>Mes clients</h3><p class="sub" style="margin:2px 0 0">Suivez les crédits de vos clients.</p></div>
       <span class="link" onclick="aller('clients')">Voir tout</span></div>
       <div style="margin-top:12px">${S.clients.slice(0,5).map(ligneClient).join('')||'<div class="vide">Aucun client pour l’instant.</div>'}</div></div>`;
@@ -265,12 +357,10 @@ function afficher(){
       <div id="liste">${liste.map(ligneClient).join('')||'<div class="vide">Aucun client trouvé.</div>'}</div>`;
   } else {
     const noms = Object.fromEntries(S.clients.map(c=>[c.id,c.name]));
-    const mouv = [...S.credits.map(x=>({...x,t:'credit'})),...S.paiements.map(x=>({...x,t:'paiement'}))]
-      .sort((a,b)=>new Date(b.created_at)-new Date(a.created_at));
     contenu = `<div class="kicker">CRÉDITS</div><h2>Historique</h2>
       <button class="btn" onclick="formCredit()">+ Nouveau crédit</button>
-      <div class="box" style="margin-top:14px">${mouv.map(m=>`<div class="row"><div>${esc(noms[m.client_id]||'Client supprimé')}<small>${datefr(m.created_at)} · ${m.t==='credit'?esc(m.note||'Crédit'):'Paiement · '+esc(m.method||'Espèces')}</small></div>
-        <span class="${m.t==='credit'?'plus':'moins'}">${m.t==='credit'?'+':'−'}${fmt(m.amount)} F</span></div>`).join('')||'<div class="vide">Aucun mouvement.</div>'}</div>`;
+      <p class="hint">Touchez une ligne pour la modifier ou la supprimer.</p>
+      <div class="box" style="margin-top:8px">${mouvements().map(m=>ligneMouv(m,noms[m.client_id]||'Client supprimé')).join('')||'<div class="vide">Aucun mouvement.</div>'}</div>`;
   }
   $('#app').innerHTML = `${MODE_LOCAL?'<div class="mode">Mode local : données enregistrées sur ce téléphone seulement</div>':''}
     <header><div class="logo">C</div><div><h1>Carnet Pro</h1><p>Gestion des crédits clients</p></div>
@@ -278,7 +368,7 @@ function afficher(){
     <main>${contenu}</main>
     <nav>${[['accueil','Accueil'],['clients','Clients'],['credits','Crédits']].map(([k,l])=>`<button class="${p===k?'on':''}" onclick="aller('${k}')">${IC[k]}<span>${l}</span></button>`).join('')}</nav>`;
 }
-function aller(p){S.page=p;afficher();window.scrollTo(0,0);}
+function aller(p){S.page=p;fermer();afficher();window.scrollTo(0,0);}
 function chercher(v){
   S.recherche=v;
   const q=v.toLowerCase();
@@ -286,11 +376,13 @@ function chercher(v){
   $('#liste').innerHTML = l.map(ligneClient).join('')||'<div class="vide">Aucun client trouvé.</div>';
 }
 
-/* ============ FENÊTRES (formulaires) ============ */
+/* ============ FENÊTRES ============ */
 function ouvrir(html){$('#sheet').innerHTML=html;$('#modal').classList.add('show');}
 function fermer(){$('#modal').classList.remove('show');}
 const options = sel => S.clients.map(c=>`<option value="${c.id}" ${c.id===sel?'selected':''}>${esc(c.name)}</option>`).join('');
+const optionsMoyen = sel => ['Espèces','Wave','Orange Money'].map(m=>`<option ${m===sel?'selected':''}>${m}</option>`).join('');
 
+/* ---- Client ---- */
 function formClient(){
   ouvrir(`<h3>Nouveau client</h3>
     <label>Nom complet</label><input id="f_nom" placeholder="Ex : Amadou Ndiaye">
@@ -303,27 +395,61 @@ async function saveClient(){
   try{ await DB.ajouter('clients',{name,phone}); fermer(); toast('Client ajouté'); charger(); }
   catch(e){ toast('Erreur : '+e.message); }
 }
+function detailClient(id){
+  const c=S.clients.find(x=>x.id===id); if(!c) return;
+  const r=enRetard(id);
+  ouvrir(`<h3>${esc(c.name)}</h3><p class="sub">${esc(c.phone||'')}</p>
+    ${r?`<div class="alerte">En retard : ${fmt(r.montant)} F depuis ${r.jours} jour${r.jours>1?'s':''} (échéance du ${dateSimple(r.depuis)})</div>`:''}
+    <div class="row"><span>Total crédits</span><b>${fmt(totalCredits(id))} F</b></div>
+    <div class="row"><span>Total payé</span><b>${fmt(totalPaye(id))} F</b></div>
+    <div class="row"><span>Reste à payer</span><b class="plus">${fmt(reste(id))} F</b></div>
+    <div style="display:flex;gap:8px;margin:14px 0;flex-wrap:wrap">
+      <button class="btn sec small" onclick="formCredit('${id}')">+ Crédit</button>
+      <button class="btn sec small" onclick="formPaiement('${id}')">+ Paiement</button>
+      ${r?`<button class="btn red small" onclick="relancer('${id}')">Relancer</button>`:`<button class="btn sec small" onclick="whatsapp('${id}')">WhatsApp</button>`}</div>
+    <p class="hint">Touchez une ligne pour la modifier ou la supprimer.</p>
+    ${mouvements(id).map(m=>ligneMouv(m)).join('')||'<div class="vide">Aucun mouvement.</div>'}
+    <button class="btn red small" style="margin-top:16px" onclick="supprClient('${id}')">Supprimer ce client</button>`);
+}
+async function supprClient(id){
+  if(!confirm('Supprimer ce client et tout son historique ?')) return;
+  try{
+    if(MODE_LOCAL){
+      for(const t of ['credits','payments']) ecrire(t,lire(t).filter(x=>x.client_id!==id));
+    }
+    await DB.supprimer('clients',id); fermer(); toast('Client supprimé'); charger();
+  }catch(e){ toast('Erreur : '+e.message); }
+}
+
+/* ---- Crédit ---- */
 function formCredit(sel){
   if(!S.clients.length) return toast('Ajoutez d’abord un client');
   ouvrir(`<h3>Nouveau crédit</h3>
     <label>Client</label><select id="f_cl">${options(sel)}</select>
     <label>Montant (FCFA)</label><input id="f_mt" type="number" inputmode="numeric" placeholder="10000">
     <label>Note (facultatif)</label><input id="f_note" placeholder="Ex : Sac de riz">
+    <label>Échéance (facultatif)</label><input id="f_ech" type="date">
+    <div class="chips"><button type="button" onclick="ech(7)">+7 jours</button><button type="button" onclick="ech(15)">+15 jours</button><button type="button" onclick="ech(30)">+30 jours</button></div>
     <button class="btn" style="width:100%" onclick="saveCredit()">Enregistrer le crédit</button>`);
 }
+function ech(n){ const d=new Date(); d.setDate(d.getDate()+n); $('#f_ech').value=dateISO(d); }
 async function saveCredit(){
   const amount=Number($('#f_mt').value);
   if(!(amount>0)) return toast('Montant invalide');
-  try{ await DB.ajouter('credits',{client_id:$('#f_cl').value,amount,note:$('#f_note').value.trim()}); fermer(); toast('Crédit ajouté'); charger(); }
-  catch(e){ toast('Erreur : '+e.message); }
+  try{
+    await DB.ajouter('credits',{client_id:$('#f_cl').value,amount,note:$('#f_note').value.trim(),due_date:$('#f_ech').value||null});
+    fermer(); toast('Crédit ajouté'); charger();
+  }catch(e){ toast('Erreur : '+e.message); }
 }
+
+/* ---- Paiement + reçu ---- */
 function formPaiement(id){
   if(!S.clients.length) return toast('Ajoutez d’abord un client');
   ouvrir(`<h3>Nouveau paiement</h3>
     <label>Client</label><select id="f_cl">${options(id)}</select>
     <label>Montant payé (FCFA)</label><input id="f_mt" type="number" inputmode="numeric" value="${id?Math.max(reste(id),0):''}">
     <label>Moyen de paiement</label>
-    <select id="f_mode"><option>Espèces</option><option>Wave</option><option>Orange Money</option></select>
+    <select id="f_mode">${optionsMoyen()}</select>
     <button class="btn" style="width:100%" onclick="savePaiement()">Enregistrer le paiement</button>`);
 }
 async function savePaiement(){
@@ -331,8 +457,8 @@ async function savePaiement(){
   if(!(amount>0)) return toast('Montant invalide');
   try{
     const p = await DB.ajouter('payments',{client_id:$('#f_cl').value,amount,method:$('#f_mode').value});
-    await charger();   // recalcule les totaux
-    ecranRecu(p);      // propose d'envoyer le reçu
+    await charger();
+    ecranRecu(p);
   }catch(e){ toast('Erreur : '+e.message); }
 }
 function ecranRecu(p){
@@ -344,63 +470,98 @@ function ecranRecu(p){
     <button class="btn" style="width:100%;margin-top:14px" onclick="envoyerRecu('${p.id}')">Envoyer le reçu par WhatsApp</button>
     <button class="btn sec" style="width:100%;margin-top:10px" onclick="fermer()">Fermer</button>`);
 }
-/* Reste à payer au moment d'un paiement donné (pour que l'ancien reçu reste exact) */
+/* Reste à payer au moment d'un paiement donné (un ancien reçu reste exact) */
 function resteAu(p){
   const t=new Date(p.created_at), id=p.client_id;
   const cr=S.credits.filter(x=>x.client_id===id&&new Date(x.created_at)<=t).reduce((a,x)=>a+Number(x.amount),0);
   const pa=S.paiements.filter(x=>x.client_id===id&&new Date(x.created_at)<=t).reduce((a,x)=>a+Number(x.amount),0);
   return cr-pa;
 }
-function envoyerRecu(pid){
-  const p=S.paiements.find(x=>x.id===pid); if(!p) return;
-  const c=S.clients.find(x=>x.id===p.client_id); if(!c) return;
-  let tel=(c.phone||'').replace(/\D/g,'');
-  if(!tel) return toast('Pas de numéro pour ce client');
-  if(tel.length===9) tel='221'+tel;
-  const r=resteAu(p);
-  const msg=`🧾 *REÇU DE PAIEMENT* n° ${p.id.slice(0,6).toUpperCase()}\n\nClient : ${c.name}\nMontant reçu : ${fmt(p.amount)} FCFA\nMoyen : ${p.method||'Espèces'}\nDate : ${datefr(p.created_at)}\nReste à payer : ${fmt(Math.max(r,0))} FCFA\n\n${r<=0?'Votre compte est soldé. ':''}Merci pour votre confiance !`;
-  window.open(`https://wa.me/${tel}?text=${encodeURIComponent(msg)}`,'_blank');
+
+/* ---- Modifier / supprimer une opération ---- */
+const tableDe = type => type==='credit' ? 'credits' : 'payments';
+const trouverOp = (type,id) => (type==='credit'?S.credits:S.paiements).find(x=>x.id===id);
+function ouvrirOp(type,id){
+  const m=trouverOp(type,id); if(!m) return;
+  const c=S.clients.find(x=>x.id===m.client_id), credit=type==='credit';
+  ouvrir(`<h3>${credit?'Crédit':'Paiement'} · ${esc(c?c.name:'')}</h3>
+    <div class="row"><span>Montant</span><b>${fmt(m.amount)} F</b></div>
+    <div class="row"><span>Date</span><b>${datefr(m.created_at)}</b></div>
+    ${credit?`<div class="row"><span>Échéance</span><b>${m.due_date?dateSimple(m.due_date):'—'}</b></div>${m.note?`<div class="row"><span>Note</span><b>${esc(m.note)}</b></div>`:''}`
+            :`<div class="row"><span>Moyen</span><b>${esc(m.method||'Espèces')}</b></div>`}
+    <div style="display:grid;gap:10px;margin-top:14px">
+      ${credit?'':`<button class="btn" onclick="envoyerRecu('${m.id}')">Envoyer le reçu par WhatsApp</button>`}
+      <button class="btn sec" onclick="formEdit('${type}','${m.id}')">Modifier</button>
+      <button class="btn red" onclick="supprOp('${type}','${m.id}')">Supprimer</button>
+      <button class="btn sec" onclick="fermer()">Fermer</button>
+    </div>`);
 }
-function detailClient(id){
-  const c=S.clients.find(x=>x.id===id); if(!c) return;
-  const mouv=[...S.credits.filter(x=>x.client_id===id).map(x=>({...x,t:'credit'})),
-              ...S.paiements.filter(x=>x.client_id===id).map(x=>({...x,t:'paiement'}))]
-              .sort((a,b)=>new Date(b.created_at)-new Date(a.created_at));
-  ouvrir(`<h3>${esc(c.name)}</h3><p class="sub">${esc(c.phone||'')}</p>
-    <div class="row"><span>Total crédits</span><b>${fmt(totalCredits(id))} F</b></div>
-    <div class="row"><span>Total payé</span><b>${fmt(totalPaye(id))} F</b></div>
-    <div class="row"><span>Reste à payer</span><b class="plus">${fmt(reste(id))} F</b></div>
-    <div style="display:flex;gap:8px;margin:14px 0"><button class="btn sec small" onclick="formCredit('${id}')">+ Crédit</button>
-      <button class="btn sec small" onclick="formPaiement('${id}')">+ Paiement</button>
-      <button class="btn sec small" onclick="whatsapp('${id}')">WhatsApp</button></div>
-    ${mouv.map(m=>`<div class="row"><div>${m.t==='credit'?esc(m.note||'Crédit'):'Paiement · '+esc(m.method||'Espèces')}<small>${datefr(m.created_at)}${m.t==='paiement'?` · <a class="link" style="font-size:13px" onclick="envoyerRecu('${m.id}')">Envoyer le reçu</a>`:''}</small></div>
-      <span class="${m.t==='credit'?'plus':'moins'}">${m.t==='credit'?'+':'−'}${fmt(m.amount)} F</span></div>`).join('')||'<div class="vide">Aucun mouvement.</div>'}
-    <button class="btn red small" style="margin-top:16px" onclick="supprClient('${id}')">Supprimer ce client</button>`);
+function formEdit(type,id){
+  const m=trouverOp(type,id); if(!m) return;
+  ouvrir(type==='credit'
+    ? `<h3>Modifier le crédit</h3>
+       <label>Montant (FCFA)</label><input id="e_mt" type="number" inputmode="numeric" value="${m.amount}">
+       <label>Note</label><input id="e_note" value="${esc(m.note||'')}">
+       <label>Échéance</label><input id="e_ech" type="date" value="${m.due_date?String(m.due_date).slice(0,10):''}">
+       <button class="btn" style="width:100%" onclick="saveEdit('credit','${id}')">Enregistrer</button>`
+    : `<h3>Modifier le paiement</h3>
+       <label>Montant (FCFA)</label><input id="e_mt" type="number" inputmode="numeric" value="${m.amount}">
+       <label>Moyen de paiement</label><select id="e_mode">${optionsMoyen(m.method||'Espèces')}</select>
+       <button class="btn" style="width:100%" onclick="saveEdit('paiement','${id}')">Enregistrer</button>`);
 }
-async function supprClient(id){
-  if(!confirm('Supprimer ce client et tout son historique ?')) return;
-  try{
-    if(MODE_LOCAL){
-      for(const t of ['credits','payments']){
-        const l=JSON.parse(localStorage.getItem('cp_'+t)||'[]').filter(x=>x.client_id!==id);
-        localStorage.setItem('cp_'+t,JSON.stringify(l));
-      }
-    }
-    await DB.supprimer('clients',id); fermer(); toast('Client supprimé'); charger();
-  }catch(e){ toast('Erreur : '+e.message); }
+async function saveEdit(type,id){
+  const m=trouverOp(type,id); if(!m) return;
+  const amount=Number($('#e_mt').value);
+  if(!(amount>0)) return toast('Montant invalide');
+  const patch = type==='credit'
+    ? {amount,note:$('#e_note').value.trim(),due_date:$('#e_ech').value||null}
+    : {amount,method:$('#e_mode').value};
+  try{ await DB.modifier(tableDe(type),id,patch); await charger(); toast('Modifié'); detailClient(m.client_id); }
+  catch(e){ toast('Erreur : '+e.message); }
+}
+async function supprOp(type,id){
+  const m=trouverOp(type,id); if(!m) return;
+  if(!confirm('Supprimer cette opération ?')) return;
+  try{ await DB.supprimer(tableDe(type),id); await charger(); toast('Supprimé'); detailClient(m.client_id); }
+  catch(e){ toast('Erreur : '+e.message); }
+}
+
+/* ---- Relances ---- */
+function ecranRelances(){
+  const l=retards();
+  ouvrir(`<h3>Clients à relancer</h3>
+    ${l.length?l.map(({c,r})=>`<div class="row"><div><b>${esc(c.name)}</b><small>${r.jours} jour${r.jours>1?'s':''} de retard · depuis le ${dateSimple(r.depuis)}</small></div>
+      <div style="text-align:right"><div class="late">${fmt(r.montant)} F</div><button class="btn sec small" style="margin-top:6px" onclick="relancer('${c.id}')">Relancer</button></div></div>`).join('')
+      +'<p class="hint">WhatsApp demande un appui par message : touchez « Relancer » pour chaque client.</p>'
+     :'<div class="vide">Aucun client en retard. 🎉</div>'}
+    <button class="btn sec" style="width:100%;margin-top:14px" onclick="fermer()">Fermer</button>`);
 }
 
 /* ============ WHATSAPP ============ */
-function whatsapp(id){
-  const c=S.clients.find(x=>x.id===id); if(!c) return;
-  let tel=(c.phone||'').replace(/\D/g,'');
+function ouvrirWA(phone,msg){
+  let tel=(phone||'').replace(/\D/g,'');
   if(!tel) return toast('Pas de numéro pour ce client');
   if(tel.length===9) tel='221'+tel;
-  const r=reste(id);
-  const msg = r>0
-    ? `Bonjour ${c.name}, petit rappel : il vous reste ${fmt(r)} FCFA à rembourser. Merci !`
-    : `Bonjour ${c.name}, votre compte est soldé. Merci pour votre confiance !`;
   window.open(`https://wa.me/${tel}?text=${encodeURIComponent(msg)}`,'_blank');
+}
+function whatsapp(id){
+  const c=S.clients.find(x=>x.id===id); if(!c) return;
+  const r=reste(id);
+  ouvrirWA(c.phone, r>0
+    ? `Bonjour ${c.name}, petit rappel : il vous reste ${fmt(r)} FCFA à rembourser. Merci !`
+    : `Bonjour ${c.name}, votre compte est soldé. Merci pour votre confiance !`);
+}
+function relancer(id){
+  const c=S.clients.find(x=>x.id===id); if(!c) return;
+  const r=enRetard(id);
+  if(!r) return toast('Ce client n’est pas en retard');
+  ouvrirWA(c.phone,`Bonjour ${c.name}, petit rappel : ${fmt(r.montant)} FCFA étaient à régler le ${dateSimple(r.depuis)} (${r.jours} jour${r.jours>1?'s':''} de retard). Reste total à payer : ${fmt(reste(id))} FCFA. Merci de régulariser dès que possible.`);
+}
+function envoyerRecu(pid){
+  const p=S.paiements.find(x=>x.id===pid); if(!p) return;
+  const c=S.clients.find(x=>x.id===p.client_id); if(!c) return;
+  const r=resteAu(p);
+  ouvrirWA(c.phone,`🧾 *REÇU DE PAIEMENT* n° ${p.id.slice(0,6).toUpperCase()}\n\nClient : ${c.name}\nMontant reçu : ${fmt(p.amount)} FCFA\nMoyen : ${p.method||'Espèces'}\nDate : ${datefr(p.created_at)}\nReste à payer : ${fmt(Math.max(r,0))} FCFA\n\n${r<=0?'Votre compte est soldé. ':''}Merci pour votre confiance !`);
 }
 
 demarrer();
